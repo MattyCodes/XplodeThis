@@ -1,3 +1,3 @@
 # XplodeThis
 
-## Customizable Website for Xplode Conference
+Customizable Website for Xplode Conference
