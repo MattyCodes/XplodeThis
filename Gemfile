@@ -9,11 +9,13 @@ end
 gem 'rails', '~> 5.0.6'
 
 
+gem 'carrierwave', '~> 1.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'haml'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
+gem 'kaminari'
 gem 'puma', '~> 3.0'
 gem 'react-rails'
 gem 'sass-rails', '~> 5.0'
