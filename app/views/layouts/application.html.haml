@@ -1,0 +1,43 @@
+%html
+  %head
+    %title Xplode Conference
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{:charset => "utf-8"}
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}
+    %meta{:content => "app, responsive, jquery, bootstrap", :name => "keywords"}
+    = csrf_meta_tags
+    = stylesheet_link_tag    "https://fonts.googleapis.com/css?family=Open+Sans|Raleway"
+    = stylesheet_link_tag    "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    = javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag    'application'
+    -# = favicon_link_tag xplode-favicon
+  %body
+    %nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          %button.navbar-toggle.collapsed{ type: :button, 'data-toggle' => :collapse, 'data-target' => "#bs-example-navbar-collapse-1" }
+            %span.sr-only Toggle Navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          = link_to root_path, class: 'navbar-brand' do
+            = image_tag "xplode-logo-blue.png", style: "max-height: 35px;"
+        .collapse.navbar-collapse#bs-example-navbar-collapse-1
+          %ul.nav.navbar-nav.navbar-right
+            %li{class: ("active" if controller_name == 'users' && action_name == 'home')}
+              = link_to 'Home', root_path
+            %li{class: ("active" if controller_name == 'users' && action_name == 'about_us')}
+              = link_to 'About Us', root_path
+            %li{class: ("active" if controller_name == 'users' && action_name == 'contact')}
+              = link_to 'Contact', root_path
+            %li.dropdown
+              = link_to '#', 'data-toggle' => 'dropdown', 'role' => 'button', 'aria-expanded' => 'false', 'class' => 'dropdown-toggle' do
+                Xplode Tour Cities
+                %span.caret
+              %ul.dropdown-menu{ role: :menu }
+                %li= link_to 'City Link', '#'
+                %li= link_to 'City Link', '#'
+    = yield

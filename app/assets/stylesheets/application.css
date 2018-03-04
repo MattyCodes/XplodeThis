@@ -13,3 +13,116 @@
  *= require_tree .
  *= require_self
  */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #f3f3f3;
+  font-family: 'Open Sans', sans-sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Raleway', sans-sans-serif;
+}
+
+.navbar.navbar-default {
+  height: 80px;
+  margin-bottom: 0;
+  border: 0;
+  background: #000;
+  border-radius: 0;
+}
+
+.navbar-default .navbar-nav > li > a {
+  transition: all 300ms;
+  background: transparent !important;
+  color: #efefef;
+  text-align: center !important;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 900;
+  padding: 31px 22px 27px 22px;
+}
+
+.navbar-default .navbar-nav > li.active > a {
+  color: #0e74b5;
+  border-bottom: 3px solid #0e74b5;
+  background-color: inherit;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #0e74b5 !important;
+  background-color: inherit !important;
+}
+
+.navbar-toggle {
+  margin-top: 22px;
+  transition: all 300ms;
+}
+
+.navbar-toggle:hover,
+.navbar-toggle:focus {
+  background-color: #0e74b5 !important;
+  border-color: #FFF !important;
+}
+
+.navbar-toggle > span {
+  background-color: #FFF !important;
+}
+
+.navbar-brand {
+  margin-top: 13px;
+}
+
+.navbar-collapse {
+  background: #000;
+  text-align: center;
+  margin-top: 0 !important;
+}
+
+.dropdown-menu {
+  margin-top: 3px !important;
+  width: 100%;
+  background: #000;
+  border-top: 1px solid #0e74b5;
+}
+
+.dropdown-menu > li > a {
+  color: #FFF !important;
+  text-transform: uppercase;
+  font-weight: 900;
+  transition: all 300ms;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #0e74b5 !important;
+  background: #000 !important;
+}
+
+.nav.navbar-nav {
+  display: inline-block;
+  float: none !important;
+  vertical-align: top;
+}
+
+@media screen and (max-width: 767px) {
+  .navbar-collapse {
+    text-align: left;
+    margin-top: 17px !important;
+  }
+
+  .navbar-default .navbar-nav > li > a {
+    margin-left: 15px;
+  }
+
+  .dropdown-menu {
+    text-align: center;
+  }
+}
