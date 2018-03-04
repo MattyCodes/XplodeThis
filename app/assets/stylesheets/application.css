@@ -38,6 +38,36 @@ h5 {
   line-height: 45px;
 }
 
+.admin-actions {
+  position: fixed;
+  background: #e8e8e8;
+  width: 250px;
+  max-height: 200px;
+  overflow-y: auto;
+  left: 30px;
+  bottom: 30px;
+  border-radius: 10px;
+  border: 1px solid #d3d3d3;
+  z-index: 10;
+  padding: 20px;
+}
+
+.admin-actions > a {
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  font-size: 17px;
+  padding: 10px 5px;
+  display: block;
+}
+
+.admin-actions > a:hover,
+.admin-actions > a:focus,
+.admin-actions > a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Overwrite Bootstrap Navbar Style */
 
 .navbar.navbar-default {

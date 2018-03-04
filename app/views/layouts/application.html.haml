@@ -41,6 +41,10 @@
                 %li= link_to 'City Link', '#'
                 %li= link_to 'City Link', '#'
     = yield
+    - if admin_doublesecret_user_signed_in?
+      .admin-actions
+        = link_to "Logout", destroy_admin_doublesecret_user_session_path, method: :delete
+        = link_to "Create Speaker", new_speaker_path
     %footer
       .container-fluid
         .row
