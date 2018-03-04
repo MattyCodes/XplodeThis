@@ -1,0 +1,28 @@
+.container.text-center{ style: "margin: 50px 0;" }
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+      .row
+        = simple_form_for @speaker do |f|
+          - if @errors
+            %code{ style: "margin-bottom: 35px; display: block;" }= @errors
+          .form-group.col-sm-12.col-md-12.col-lg-12
+            %label.users-label{ for: "name" } Name
+            = f.input :name, label: false, placeholder: "Matt Fagioli"
+          .form-group.col-sm-12.col-md-12.col-lg-12
+            %label.users-label{ for: "title" } Job Title
+            = f.input :title, label: false, placeholder: "Founder, Xplode Conference"
+          .form-group.col-sm-12.col-md-12.col-lg-12
+            %label.users-label{ for: "email" } Email
+            = f.input :email, label: false, placeholder: "mattfagioli@gmail.com"
+          .form-group.col-sm-12.col-md-12.col-lg-12
+            %label.users-label{ for: "website" } Website
+            = f.input :website, label: false, placeholder: "xplodethis.com"
+          .form-group.col-sm-12.col-md-12.col-lg-12
+            %label.users-label{ for: "bio" } Bio
+            = f.input :bio, as: :text, label: false, class: 'form-control', placeholder: "Matt Fagioli is the Founder of the Xplode Conference Series and is an important advocate in the industry for real estate agents and brokers. Matt has been a REALTOR for 15 years and he cares deeply about what agents and brokers really need: powerful marketing, great technology, useful advice and a no-bull approach to growing a business through hard work and dedication. Through the Xplode Conferences, Matt connects thousands of agents and brokers annually with the marketing and technology companies that drives extraordinary outcomes in residential real estate sales. Matt is an in-demand speaker at other industry conferences as well, with expertise in digital marketing, lead generation and conversion and team building. Back home near Atlanta, Matt manages a growing sales team @ 678realestate.com Matt has also founded 1000Dwellings, a 501c non-profit corporation that is bringing low-income families out of poverty and into permanent homes."
+          .form-group.col-sm-12.col-md-12.col-lg-12{ style: "margin-bottom: 50px;" }
+            %label.users-label{ for: "avatar" } Avatar
+            %label.btn.btn-lg.btn-info{ for: "speaker_avatar" } Choose File
+            = f.input :avatar, label: false, input_html: { class: "hide" }
+          .form-group.col-sm-12.col-md-12.col-lg-12
+            = f.submit "Create Speaker", class: "btn btn-lg btn-primary"
