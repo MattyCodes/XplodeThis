@@ -15,6 +15,10 @@
       = f.label :password_confirmation, class: "users-label"
       = f.password_field :password_confirmation, autocomplete: "off"
 
+    .form-group
+      %label.users-label Validation Key
+      = text_field_tag :validation_key
+
     %div{ style: "margin: 45px auto; width: 300px;" }
       - if resource.errors.present?
         - resource.errors.messages.each do |key, val|
