@@ -1,4 +1,28 @@
 .container-fluid
-  .row
+  - if admin_doublesecret_user_signed_in?
+    = link_to speaker_path(@speaker), method: :delete do
+      %button.btn.btn-lg.btn-danger.admin-action-button.btn-rounded Delete Speaker
+    = link_to edit_speaker_path(@speaker) do
+      %button.btn.btn-lg.btn-warning.admin-action-button.btn-rounded.second-button Edit Speaker
+  .row.speaker-show-header
     .col-sm-12.col-md-12.col-lg-12
-      = @speaker.inspect
+      %h2= @speaker.name
+      %h3= @speaker.title
+  .row
+    .col-sm-12.col-md-12.col-lg-12.grey-background
+      .row
+        .col-xs-12.col-sm-5.col-md-5.col-lg-5
+          .speaker-panel
+            = image_tag @speaker.avatar_url
+            .speaker-info
+              %p.spaced-letters{ style: "text-transform: uppercase; font-weight: 900; word-spacing: 2px;" }= @speaker.name
+              %p.spaced-letters{ style: "font-weight: 100;" }= @speaker.title
+              - if @speaker.email.present?
+                %p.spaced-letters
+                  = @speaker.email
+              - if @speaker.website.present?
+                %p.spaced-letters
+                  %a{ href: "#{@speaker.website}" }= @speaker.website
+        .col-xs-12.col-sm-7.col-md-7.col-lg-7{ style: "padding: 35px 25px; margin-top: 15px;" }
+          %h3.bio-header Biography
+          %div{ style: "padding: 80px 15px; padding-top: 5px; font-size: 16px; line-height: 30px;" }=@speaker.bio.html_safe

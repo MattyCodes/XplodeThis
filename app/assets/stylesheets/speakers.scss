@@ -1,3 +1,62 @@
 // Place all the styles related to the Speakers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.speaker-show-header {
+  min-height: 250px;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7)), url("blue-texture.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top;
+  h2 {
+    font-size: 45px;
+    font-weight: 900;
+    color: #FFF;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    margin-top: 70px;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    line-height: 70px;
+  }
+  h3 {
+    color: #FFF;
+    margin-left: 30px;
+    margin-top: 0;
+    margin-bottom: 75px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 35px;
+  }
+}
+
+.bio-header {
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 1px;
+  font-size: 22px;
+  margin-left: 15px;
+  border-bottom: 2px solid #0e74b5;
+  padding: 0px 22px 15px 22px;
+  width: fit-content;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.speaker-panel {
+  width: 90%;
+  margin: 75px auto;
+  background: #000;
+  max-width: 500px;
+  img {
+    width: 100%;
+    max-height: 330px;
+    object-fit: cover;
+  }
+
+}
+
+.speaker-info {
+  padding: 20px;
+}
