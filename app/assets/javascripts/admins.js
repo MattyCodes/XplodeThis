@@ -5,13 +5,21 @@ document.addEventListener("turbolinks:load", function() {
 function adminPanelListener() {
   $("#admin-actions-panel").on('click', function(e) {
     if ( $("#admin-panel-close")[0] != e.target ) {
-      $(this).addClass('active');
-      $(this).children('.panel-links-container').removeClass('hide');
+      openAdminPanel();
     }
   });
 
   $("#admin-panel-close").on('click', function() {
-    $("#admin-actions-panel").removeClass("active");
-    $(".panel-links-container").addClass('hide');
+    closeAdminPanel();
   });
+};
+
+function openAdminPanel() {
+  $("#admin-actions-panel").addClass('active');
+  $(".panel-links-container").removeClass('hide');
+};
+
+function closeAdminPanel() {
+  $("#admin-actions-panel").removeClass("active");
+  $(".panel-links-container").addClass('hide');
 };

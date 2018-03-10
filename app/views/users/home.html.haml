@@ -1,3 +1,29 @@
-.container-fluid.homepage-container{ style: "height: 100%;" }
+.container-fluid.homepage-container
   .row
-    .col-sm-12.col-md-12.col-lg-12
+    .col-sm-12.col-md-12.col-lg-12{ style: "padding: 60px 15px;" }
+      - if params[:submitted]
+        .row
+          .col-sm-12.col-md-12.col-lg-12
+            .alert.alert-success.text-success.text-center{ style: "width: 90%; min-width: 250px; margin: 0 auto;" } Thanks! Your information has been submitted.
+      .row
+        .col-sm-12.col-md-12.col-lg-12
+          %h2.large-line-height{ style: "color: #FFF; padding: 55px;" }
+            Xplode Tour 2018
+            %br
+            We are gearing up for a GREAT 2018!
+            %br
+            Xplode may be coming to a city near you!
+      .row
+        .col-sm-12.col-md-10.col-lg-8{ style: "padding: 50px;" }
+          = form_tag "/users/submit_inquiry" do
+            .form-row
+              .form-group.col-sm-12.col-md-12.col-lg-12
+                %label.form-label Name
+                = text_field_tag "name", nil, :required => true
+            .form-row
+              .form-group.col-sm-12.col-md-12.col-lg-12
+                %label.form-label Email
+                = text_field_tag "email", nil, :required => true
+            .form-row
+              .form-group.col-sm-12.col-md-12.col-lg-12
+                = submit_tag "Submit", class: "xplode-btn"
