@@ -30,6 +30,12 @@ h5 {
   font-family: 'Raleway', sans-sans-serif;
 }
 
+a:hover,
+a:focus {
+  color: inherit;
+  text-decoration: none;
+}
+
 .heavy-font {
   font-weight: 900;
 }
@@ -38,47 +44,47 @@ h5 {
   line-height: 45px;
 }
 
-.admin-actions {
-  position: fixed;
-  background: #ffffffde;
-  width: 250px;
-  overflow-y: auto;
-  left: 30px;
-  bottom: 30px;
-  border-radius: 10px;
-  border: 1px solid #d3d3d3;
-  z-index: 10;
-  padding: 20px;
-}
-
-.admin-action-button {
-  position: fixed;
-  z-index: 10;
-  right: 20px;
-  top: 100px;
-}
-
-.admin-action-button.second-button {
-  top: 170px;
-}
-
-.admin-actions > a {
-  text-transform: uppercase;
-  font-weight: 900;
-  letter-spacing: 0.5px;
-  font-size: 17px;
-  padding: 10px 5px;
+.display-block {
   display: block;
 }
 
-.admin-actions > a:hover,
-.admin-actions > a:focus,
-.admin-actions > a:active {
-  text-decoration: none;
-  color: inherit;
+#admin-actions-panel {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  bottom: 40px;
+  left: 40px;
+  background: #FFF;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 250ms;
+  z-index: 90;
+}
+
+#admin-actions-panel.active {
+  height: 400px;
+  width: 300px;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+#admin-panel-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 20px;
+}
+
+.admin-action-btn {
+  width: 150px;
+  margin: 15px 0px;
 }
 
 /* Overwrite Bootstrap Navbar Style */
+
+nav {
+  max-width: 100%;
+}
 
 .navbar.navbar-default {
   height: 80px;
@@ -127,15 +133,16 @@ h5 {
 }
 
 .navbar-brand {
-  margin-top: 13px;
+  margin-top: 10px;
+  position: relative;
+  z-index: 101;
 }
 
 .navbar-collapse {
   background: #000;
   text-align: center;
   margin-top: 0 !important;
-  position: absolute;
-  width: 100%;
+  position: relative;
   z-index: 100;
 }
 

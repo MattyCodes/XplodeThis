@@ -1,9 +1,4 @@
 .container-fluid
-  - if admin_doublesecret_user_signed_in?
-    = link_to speaker_path(@speaker), method: :delete do
-      %button.btn.btn-lg.btn-danger.admin-action-button.btn-rounded Delete Speaker
-    = link_to edit_speaker_path(@speaker) do
-      %button.btn.btn-lg.btn-warning.admin-action-button.btn-rounded.second-button Edit Speaker
   .row.speaker-show-header
     .col-sm-12.col-md-12.col-lg-12
       %h2= @speaker.name

@@ -13,7 +13,7 @@
     = javascript_include_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag    'application'
-    -# = favicon_link_tag xplode-favicon
+    -# = favicon_link_tag "xplode-favicon"
   %body
     %nav.navbar.navbar-default
       .container-fluid
@@ -24,7 +24,7 @@
             %span.icon-bar
             %span.icon-bar
           = link_to root_path, class: 'navbar-brand' do
-            = image_tag "xplode-logo-blue.png", style: "max-height: 35px;"
+            = image_tag "xplode-logo-blue.png", style: "max-height: 37px;"
         .collapse.navbar-collapse#bs-example-navbar-collapse-1
           %ul.nav.navbar-nav.navbar-right
             %li{class: ("active" if controller_name == 'users' && action_name == 'home')}
@@ -42,9 +42,10 @@
                 %li= link_to 'City Link', '#'
     = yield
     - if admin_doublesecret_user_signed_in?
-      .admin-actions
-        = link_to "Logout", destroy_admin_doublesecret_user_session_path, method: :delete
-        = link_to "Create Speaker", new_speaker_path
+      #admin-actions-panel
+        .panel-links-container.hide
+          %span.glyphicon.glyphicon-remove#admin-panel-close
+          = render 'layouts/admin_buttons'
     %footer
       .container-fluid
         .row
