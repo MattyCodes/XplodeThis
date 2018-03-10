@@ -1,15 +1,15 @@
-.container.text-center{ style: "margin: 33px 0;" }
-  %h1.heavy-font.text-left.large-line-height.page-header{ style: "width: fit-content; padding: 25px 30px; margin: 55px auto;" } Log In
+.container.text-center{ style: "margin-top: 75px;" }
+  %h2.form-header Login
 
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
-    .form-group.col-sm-12.col-md-12.col-lg-12
+    .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
       = f.label :email, class: "users-label"
       = f.email_field :email, autofocus: true, autocomplete: "email"
 
-    .form-group.col-sm-12.col-md-12.col-lg-12
+    .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
       = f.label :password, class: "users-label"
       = f.password_field :password, autocomplete: "off"
 
-    .form-group.col-sm-12.col-md-12.col-lg-12.actions{ style: "margin: 35px 0px;" }
-      = f.submit "Log in", class: "btn btn-lg btn-primary"
+    .form-group.col-sm-12.col-md-12.col-lg-12.actions{ style: "margin: 75px 0px;" }
+      = f.submit "Log in", class: "btn btn-lg btn-primary btn-rounded"

@@ -1,21 +1,21 @@
-.container.text-center{ style: "margin: 20px 0;" }
-  %h1.text-left.page-header.heavy-font{ style: "margin: 50px auto; width: fit-content; padding: 20px 30px;" } Create User
+.container.text-center{ style: "margin-top: 75px;" }
+  %h2.form-header Create User
 
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
 
-    .form-group
+    .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
       = f.label :email, class: "users-label"
       = f.email_field :email, autofocus: true, autocomplete: "email"
 
-    .form-group
+    .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
       = f.label :password, class: "users-label"
       = f.password_field :password, autocomplete: "off"
 
-    .form-group
+    .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
       = f.label :password_confirmation, class: "users-label"
       = f.password_field :password_confirmation, autocomplete: "off"
 
-    .form-group
+    .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
       %label.users-label Validation Key
       = text_field_tag :validation_key
 
@@ -26,5 +26,5 @@
             %code.form-group.text-danger{ style: 'display: block;' }
               = "#{key}: #{val.join(', ')}"
 
-    .form-group.actions{ style: "margin: 25px 0; margin-bottom: 40px;" }
+    .form-group.col-sm-12.col-md-12.col-lg-12.actions{ style: "margin: 25px 0; margin-bottom: 40px;" }
       = f.submit "Submit", class: "btn btn-primary btn-lg btn-rounded"

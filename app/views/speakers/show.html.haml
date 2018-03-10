@@ -19,9 +19,11 @@
               %p.spaced-letters{ style: "font-weight: 100;" }= @speaker.title
               - if @speaker.email.present?
                 %p.spaced-letters
+                  %span.glyphicon.glyphicon-envelope
                   = @speaker.email
               - if @speaker.website.present?
                 %p.spaced-letters
+                  %span.glyphicon.glyphicon-globe
                   %a{ href: "#{@speaker.website}" }= @speaker.website
         .col-xs-12.col-sm-7.col-md-7.col-lg-7{ style: "padding: 35px 25px; margin-top: 15px;" }
           %h3.bio-header Biography
