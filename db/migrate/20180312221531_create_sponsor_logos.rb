@@ -1,0 +1,9 @@
+class CreateSponsorLogos < ActiveRecord::Migration[5.0]
+  def change
+    create_table :sponsor_logos do |t|
+      t.string :name, null: false
+      t.string :logo, null: false
+      t.timestamps
+    end
+  end
+end

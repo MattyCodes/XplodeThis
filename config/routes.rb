@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root :to => "users#home"
   resources :speakers, param: :slug
+  resources :sponsor_logos
   devise_for :users
   namespace :admin do
     namespace :doublesecret do
