@@ -6,4 +6,9 @@
     %button.btn.btn-danger.display-block.btn-rounded.admin-action-btn Delete Speaker
   = link_to edit_speaker_path(@speaker) do
     %button.btn.btn-warning.display-block.btn-rounded.admin-action-btn Edit Speaker
-= link_to "Add Sponsor Logo", new_sponsor_logo_path, class: "btn btn-info btn-rounded display-block admin-action-btn"
+- unless controller_name == 'sponsor_logos' && action_name == 'new'
+  = link_to "Add Sponsor Logo", new_sponsor_logo_path, class: "btn btn-info btn-rounded display-block admin-action-btn"
+- if controller_name == 'sponsor_logos' && action_name == 'show' && @logo.present?
+  = link_to "Edit Sponsor Logo", edit_sponsor_logo_path(@logo), class: "btn btn-warning btn-rounded display-block admin-action-btn"
+  = link_to sponsor_logo_path(@logo), method: :delete do
+    %button.btn.btn-danger.display-block.btn-rounded.admin-action-btn Delete Sponsor Logo

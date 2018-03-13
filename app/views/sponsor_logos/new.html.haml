@@ -1,0 +1,21 @@
+.container.text-center{ style: "margin-top: 100px;" }
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+      %h2.form-header Create Sponsor Logo
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+      .row
+        = simple_form_for @logo do |f|
+          - if @error_message
+            %code{ style: "margin-bottom: 35px; display: block;" }= @error_message
+          .row
+            .form-group.col-xs-12.col-sm-12.col-md-12.col-lg-12
+              %label.users-label{ for: "name" } Name
+              = f.input :name, label: false, placeholder: "Realtor.com"
+            .form-group.col-xs-12.col-sm-12.col-md-12.col-lg-12
+              = image_tag '', class: 'preview_image'
+              %label.users-label{ for: "logo" } Logo
+              %label.btn.btn-lg.btn-info{ for: "sponsor_logo_logo" } Choose File
+              = f.input :logo, label: false, input_html: { class: "hide" }
+            .form-group.col-sm-12.col-md-12.col-lg-12{ style: "margin-bottom: 100px;" }
+              = f.submit "Create Sponsor Logo", class: "btn btn-lg btn-primary btn-rounded"

@@ -1,0 +1,7 @@
+.container{ style: "margin-top: 100px;" }
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+      %h2.form-header= @logo.name
+  .row
+    .col-sm-12.col-md-12.col-lg-12.text-center{ style: "margin-bottom: 75px;" }
+      = image_tag @logo.logo_url, class: "preview_image"
