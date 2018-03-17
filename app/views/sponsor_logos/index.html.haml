@@ -1,0 +1,8 @@
+.container.text-center{ style: "min-height: 100%; margin-top: 30px; padding-bottom: 100px;" }
+  - @logos.in_groups_of(2).each do |group|
+    .row
+      - group.each do |logo|
+        = link_to edit_sponsor_logo_path(logo) do
+          .col-sm-12.col-md-6.col-lg-6{ style: "margin-top: 30px; margin-bottom: 30px;" }
+            %h2.form-header{ style: "margin: 30px auto;" }= logo&.name
+            = image_tag logo.logo.url, style: "width: 100%; max-width: 300px; max-height: 400px; object-fit: cover; border-radius: 4px; margin: 25px 15px 25px 15px;"

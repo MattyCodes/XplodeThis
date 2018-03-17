@@ -1,6 +1,6 @@
 .container-fluid.homepage-container
   .row
-    .col-sm-12.col-md-12.col-lg-12{ style: "padding: 60px 15px;" }
+    .col-xs-12.col-sm-8.col-md-9.col-lg-9{ style: "padding: 60px 15px;" }
       - if params[:submitted]
         .row
           .col-sm-12.col-md-12.col-lg-12
@@ -14,7 +14,7 @@
             %br
             Xplode may be coming to a city near you!
       .row
-        .col-sm-12.col-md-10.col-lg-8{ style: "padding: 50px;" }
+        .col-sm-12.col-md-12.col-lg-12{ style: "padding: 50px;" }
           = form_tag "/users/submit_inquiry" do
             .form-row
               .form-group.col-sm-12.col-md-12.col-lg-12
@@ -27,3 +27,9 @@
             .form-row
               .form-group.col-sm-12.col-md-12.col-lg-12
                 = submit_tag "Submit", class: "xplode-btn"
+    .col-xs-12.col-sm-4.col-md-3.col-lg-3{ style: "margin-top: 75px; margin-bottom: 75px; padding: 20px;" }
+      - @logos.each do |logo|
+        .row
+          .col-sm-12.col-md-12.col-lg-12.home-logo-container
+            = link_to ( logo.link || '#' ) do
+              = image_tag logo.logo.url, style: "max-width: 100%; max-height: 150px; margin: 25px auto; border-radius: 2px;"

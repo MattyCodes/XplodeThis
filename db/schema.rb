@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312221531) do
+ActiveRecord::Schema.define(version: 20180317172802) do
 
   create_table "speakers", force: :cascade do |t|
     t.string   "name"
@@ -25,10 +25,12 @@ ActiveRecord::Schema.define(version: 20180312221531) do
   end
 
   create_table "sponsor_logos", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "logo",       null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",                                 null: false
+    t.string   "logo",                                 null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "display_on_home_page", default: false
+    t.string   "link"
   end
 
   create_table "users", force: :cascade do |t|

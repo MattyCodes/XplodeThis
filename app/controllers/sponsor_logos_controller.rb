@@ -1,4 +1,10 @@
 class SponsorLogosController < ApplicationController
+  before_action :authenticate_admin_doublesecret_user!
+
+  def index
+    @logos = SponsorLogo.all
+  end
+
   def new
     @logo = SponsorLogo.new
   end
@@ -35,7 +41,7 @@ class SponsorLogosController < ApplicationController
   private
 
   def logo_params
-    params.require(:sponsor_logo).permit(:name, :logo)
+    params.require(:sponsor_logo).permit(:name, :logo, :display_on_home_page, :link)
   end
 
   def find_logo_by_id_or_redirect

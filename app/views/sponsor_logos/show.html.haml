@@ -1,7 +1,15 @@
-.container{ style: "margin-top: 100px;" }
+.container{ style: "margin-top: 100px; height: 100%;" }
   .row
     .col-sm-12.col-md-12.col-lg-12
       %h2.form-header= @logo.name
+  - if @logo.link.present?
+    .row
+      .col-sm-12.col-md-12.col-lg-12
+        %h3.text-center{ style: "font-weight: 900; margin-bottom: 15px;" } Link:
+        %p.text-center{ style: "font-size: 18px; letter-spacing: 1px;" }= @logo.link
+  .row
+    .col-sm-12.col-md-12.col-lg-12.text-center{ style: "margin-bottom: 15px;" }
+      = image_tag @logo.logo_url, class: "preview_image"
   .row
     .col-sm-12.col-md-12.col-lg-12.text-center{ style: "margin-bottom: 75px;" }
-      = image_tag @logo.logo_url, class: "preview_image"
+      %p{ style: "font-size: 20px; font-weight: 900;" }= "On Home Page: #{@logo.display_on_home_page.to_s.upcase}"

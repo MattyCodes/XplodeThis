@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def home
+    @logos = SponsorLogo.to_display_on_home_page
   end
 
   def submit_inquiry
