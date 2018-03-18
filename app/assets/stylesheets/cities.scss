@@ -1,0 +1,128 @@
+// Place all the styles related to the Cities controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.city-header {
+  font-size: 35px;
+  color: #f3f3f3;
+  font-weight: 900;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+  line-height: 60px;
+  padding: 10px 20px 10px 20px;
+  border-left: 5px solid #0275db;
+  margin-bottom: 0px;
+}
+
+.city-subheader {
+  color: #f3f3f3;
+  padding: 10px 33px;
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: 0;
+  padding-top: 0;
+  line-height: 55px;
+}
+
+.buy-passes-toggle {
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  color: #f3f3f3;
+  background-color: #7db77d;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.buy-passes-content {
+  height: 0px;
+  line-height: 0;
+  overflow: hidden;
+  width: 100%;
+  background-color: #f3f3f3;
+  transition: all 300ms;
+  display: none;
+}
+
+.buy-passes-content.open {
+  display: block;
+  height: auto;
+  padding: 20px;
+}
+
+.city-sponsor-logos {
+  background-color: #354151;
+  min-height: 50px;
+  padding: 40px;
+  padding-top: 50px;
+  text-align: center;
+}
+
+.city-sponsor-logos.white {
+  background: #fdfdfd;
+}
+
+img.city-sponsor-logo {
+  width: auto;
+  max-width: 100%;
+  margin: 25px;
+}
+
+.city-logo-list {
+  max-width: 100%;
+  max-height: 330px;
+}
+
+.city-info {
+  background-color: #005ca4;
+  color: #f3f3f3;
+  padding: 30px 20px;
+
+  h3 {
+    font-weight: 300;
+    font-size: 30px;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    padding-bottom: 5px;
+  }
+
+  h4 {
+    font-size: 20px;
+    margin-top: 15px;
+    padding: 0 15px;
+    letter-spacing: 1px;
+    word-spacing: 2px;
+  }
+}
+
+.xplode-info {
+  padding: 70px 20px;
+  background: #000;
+}
+
+.xplode-info-img {
+  object-fit: cover;
+  width: 100%;
+  max-width: 375px;
+  margin: 25px 20px;
+}
+
+.xplode-info-text {
+  font-size: 22px;
+  font-weight: 300;
+  color: #f3f3f3;
+  line-height: 40px;
+  padding: 0px 30px 60px 30px;
+}
+
+.xplode-info-text-bold {
+  font-size: 25px;
+  color: #f3f3f3;
+  line-height: 50px;
+  padding: 30px;
+  font-weight: 900;
+}

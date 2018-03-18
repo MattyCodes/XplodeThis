@@ -15,7 +15,6 @@ class SpeakersController < ApplicationController
     if @speaker.present? && @speaker.save
       redirect_to speaker_path(@speaker)
     else
-      @speaker = Speaker.new(speaker_params)
       @errors = "Unable to create speaker - please fill all fields correctly."
       render 'new'
     end
