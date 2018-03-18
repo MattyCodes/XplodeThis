@@ -1,0 +1,47 @@
+.container.text-center{ style: "margin-top: 75px;" }
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+      %h2.form-header Update City
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+      .row
+        = simple_form_for @city do |f|
+          - if @errors
+            %code{ style: "margin-bottom: 35px; display: block;" }= @errors
+          .row
+            .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
+              %label.users-label{ for: "name" } Name
+              = f.input :name, label: false, placeholder: "Ft Lauderdale"
+            .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
+              %label.users-label{ for: "slug" } Slug
+              = f.input :slug, label: false, placeholder: "ft-lauderdale"
+          .row
+            .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
+              %label.users-label{ for: "title" } Day of the Week
+              = f.input :day, label: false, placeholder: "Monday"
+            .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
+              %label.users-label{ for: "email" } Date
+              = f.input :date, label: false, placeholder: "March 12"
+          .row
+            .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
+              %label.users-label{ for: "time" } Time
+              = f.input :time, label: false, placeholder: "8:00am - 3:00pm"
+            .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
+              %label.users-label{ for: "venue" } Venue
+              = f.input :venue, label: false, placeholder: "Marriott at the University of Daton"
+          .row
+            .form-group.col-xs-12.col-sm-12.col-md-12.col-lg-12
+              %label.users-label{ for: "event_ticket_code" } EventBrite Code
+              = f.input :event_ticket_code, label: false, placeholder: "<div> A bunch of code here... </div>"
+          .row
+            .form-group.col-sm-12.col-md-12.col-lg-12{ style: "margin-bottom: 50px;" }
+              = image_tag @city.header_image&.url || '', class: 'preview_image'
+              %label.users-label{ for: "header_image" } Header Image
+              %label.btn.btn-lg.btn-info{ for: "city_header_image" } Choose File
+              = f.input :header_image, label: false, input_html: { class: "hide" }
+          .row
+            .form-group.col-sm-12.col-md-12.col-lg-12{ style: "margin-bottom: 40px;" }
+              = f.submit "Update City", class: "btn btn-lg btn-primary btn-rounded"
+          .row
+            .form-group.col-sm-12.col-md-12.col-lg-12{ style: "margin-bottom: 100px;" }
+              = react_component("SponsorLogoSelector", { parentId: @city.id, parentType: "city", currentLogos: @city.sponsor_logos.map { |sl| { name: sl.name, imageUrl: sl.logo&.url, id: sl.id } }, availableLogos: SponsorLogo.all.select { |sl| !sl.cities.include? @city }.map { |sl| { name: sl.name, imageUrl: sl.logo&.url, id: sl.id } } })

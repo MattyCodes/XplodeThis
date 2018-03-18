@@ -1,0 +1,49 @@
+.container-fluid
+  .row
+    - if @city.header_image.present?
+      .col-sm-12.col-md-12.col-lg-12{ style: "padding: 33px; min-height: 300px; background-image: url(#{@city.header_image.url}); background-size: cover;" }
+        %h2.city-header= "Xplode #{@city.name}  |  #{@city.date}"
+        %h3.city-subheader= "#{@city.venue}  |  #{@city.time}"
+    - else
+      .col-sm-12.col-md-12.col-lg-12{ style: "background-color: #9e9e9e; min-height: 300px; padding: 33px;" }
+        %h2.city-header= "Xplode #{@city.name}  |  #{@city.date}"
+        %h3.city-subheader= "#{@city.venue}  |  #{@city.time}"
+  - if @city.event_ticket_code.present?
+    .row
+      .col-sm-12.col-md-12.col-lg-12
+        .row
+          .col-sm-12.col-md-12.col-lg-12.buy-passes-toggle Buy Passes
+          .col-sm-12.col-md-12.col-lg-12.buy-passes-content= @city.event_ticket_code.html_safe
+  - if @city.sponsor_logos.present?
+    .row
+      .col-sm-12.col-md-12.col-lg-12.city-sponsor-logos
+        - @city.sponsor_logos[0..8].each do |logo|
+          = link_to ( logo.link.present? ? logo.link : '#' ) do
+            = image_tag logo.logo&.url, class: "city-sponsor-logo"
+  .row
+    .col-sm-12.col-md-12.col-lg-12.city-info.text-center
+      %h3= "Xplode #{@city.name}  |  #{@city.date}"
+      %h4= "#{@city.venue}  |  #{@city.time}"
+  - if @city.sponsor_logos[9..-1].present?
+    .row
+      .col-sm-12.col-md-12.col-lg-12.city-sponsor-logos.white
+        - @city.sponsor_logos[9..-1].each do |logo|
+          = link_to ( logo.link.present? ? logo.link : '#' ) do
+            = image_tag logo.logo&.url, class: "city-sponsor-logo"
+  .row
+    .col-sm-12.col-md-12.col-lg-12.xplode-info.text-center
+      .row
+        .col-sm-12.col-md-12.col-lg-12
+          = image_tag "xplode-blue-transparent.png", class: "xplode-info-img"
+      .row
+        .col-sm-12.col-md-12.col-lg-12
+          %p.xplode-info-text-bold
+            Where top REALTORS come to get the latest tech, digital marketing and sales strategies to grow their businesses.
+      .row
+        .col-sm-12.col-md-12.col-lg-12
+          %p.xplode-info-text
+            Xplode Conference is a jam-packed day of technology and digital marketing for the real estate professional. Come ready to absorb everything our industry experts have to offer. Leave with actionable items to immediately ignite your business!
+      .row
+        .col-sm-12.col-md-12.col-lg-12
+          = link_to about_path do
+            %button.xplode-btn Learn More About Xplode

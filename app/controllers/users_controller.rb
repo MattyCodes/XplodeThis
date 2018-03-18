@@ -3,6 +3,9 @@ class UsersController < ApplicationController
     @logos = SponsorLogo.to_display_on_home_page
   end
 
+  def about
+  end
+
   def submit_inquiry
     data = {
       name: params[:name],
