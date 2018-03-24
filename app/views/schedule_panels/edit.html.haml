@@ -1,0 +1,26 @@
+.container.text-center{ style: "margin-top: 75px; margin-bottom: 100px;" }
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+      %h2.form-header Update Session Panel
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+      .row
+        = simple_form_for @panel do |f|
+          - if @errors
+            %code{ style: "margin-bottom: 35px; display: block;" }= @errors
+          .row
+            .form-group.col-xs-12.col-sm-12.col-md-6.col-lg-6
+              %label.users-label{ for: "title" } Session Time
+              = f.input :time, label: false, placeholder: "9:00am"
+            .form-group.col-xs-12.col-sm-12.col-md-6.col-lg-6{ style: "margin-bottom: 50px;" }
+              %label.users-label{ for: "title" } Session Title
+              = f.input :title, label: false, placeholder: "Welcome and Speaker Introductions"
+          .row
+            .form-group.col-sm-12.col-md-12.col-lg-12
+              = f.submit "Update Session Panel", class: "btn btn-lg btn-primary btn-rounded"
+          .row
+            .form-group.col-sm-12.col-md-12.col-lg-12{ style: "margin: 25px 0px;" }
+              %hr{ style: "border-width: 2px; border-color: #dddddd;" }
+          .row
+            .form-group.col-sm-12.col-md-12.col-lg-12
+              = react_component "SchedulePanelEditor", { currentSpeakers: @panel.speakers.map(&:as_json), speakers: Speaker.all.map(&:as_json), panelId: @panel.id }

@@ -26,7 +26,7 @@ class SchedulePanelSelector extends React.Component {
         </div>
         <div className="row">
           <div className="col-sm-12 col-md-12 col-lg-12" style={{ marginTop: '50px' }}>
-            <h2> Current Panels: </h2>
+            <h2 style={{ margin: "35px 0px" }}> Current Panels: </h2>
             { currentPanels }
           </div>
         </div>
@@ -112,6 +112,7 @@ class SchedulePanelSelector extends React.Component {
   };
 
   generateCurrentPanels(panels) {
+    var self = this;
     var res;
 
     if ( panels.length > 0 ) {
@@ -140,15 +141,41 @@ class SchedulePanelSelector extends React.Component {
                 <hr />
                 <h3> Speakers: </h3>
                 { speakers }
+                <div style={{ margin: '40px 0px 20px 0px' }}>
+                  <a href={ "/schedule_panels/" + panel.id + "/edit" } style={{ margin: "20px 0px" }} className="btn-lg btn-warning btn-rounded"> Edit Session Panel </a>
+                  <button className="btn-lg btn-danger btn-rounded" style={{ margin: "20px 10px" }} onClick={ (e) => self.deletePanel(panel.id, e) }> Delete Session Panel </button>
+                </div>
               </div>
             </div>
           </div>
         )
       });
     } else {
-      res = (<h3>There are no session-panels.</h3>);
+      res = (
+        <div className="panel panel-body">
+          <h3>There are no session-panels.</h3>
+        </div>
+      );
     }
     return res;
+  };
+
+  deletePanel(id, e = null) {
+    if (e) e.preventDefault();
+    let self = this;
+
+    $.ajax({
+      method: "delete",
+      url: "/schedule_panels/" + id
+    }).done(function(res) {
+      if (res.success) {
+        self.setState({ currentPanels: res.panels });
+      } else {
+        alert("Something went wrong and the panel could not be removed. Please refresh and try again.");
+      }
+    }).fail(function(err) {
+      window.location.reload();
+    });
   };
 
   submitCurrentPanel(e = null) {
