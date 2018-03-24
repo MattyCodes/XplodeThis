@@ -18,3 +18,10 @@
   = link_to "Edit City", edit_city_path(@city), class: "btn btn-warning btn-rounded display-block admin-action-btn"
   = link_to city_path(@city), method: :delete do
     %button.btn.btn-danger.display-block.btn-rounded.admin-action-btn Delete City
+  - if !@city.schedule.present?
+    = link_to schedule_create_path(@city.id), method: :post do
+      %button.btn.btn-info.display-block.btn-rounded.admin-action-btn Add Schedule
+- if controller_name == 'schedules' && action_name == 'show' && @schedule.present?
+  = link_to "Edit Schedule", edit_schedule_path(@schedule), class: "btn btn-warning btn-rounded display-block admin-action-btn"
+  = link_to schedule_path(@schedule), method: :delete do
+    %button.btn.btn-danger.display-block.btn-rounded.admin-action-btn Delete Schedule

@@ -39,6 +39,10 @@ a:focus {
   font-weight: 900;
 }
 
+.small-line-height {
+  line-height: 30px;
+}
+
 .large-line-height {
   line-height: 45px;
 }

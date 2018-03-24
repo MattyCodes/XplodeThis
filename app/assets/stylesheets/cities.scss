@@ -22,6 +22,15 @@
   margin-top: 0;
   padding-top: 0;
   line-height: 55px;
+  width: 100%;
+  > a {
+    color: #f3f3f3;
+    padding: 5px 10px;
+    transition: all 200ms ease-in-out;
+    &:hover {
+      border-bottom: 3px solid #0275db;
+    }
+  }
 }
 
 .buy-passes-toggle {
@@ -110,6 +119,9 @@ img.city-sponsor-logo {
   width: 100%;
   max-width: 375px;
   margin: 25px 20px;
+  @media screen and (max-width: 500px) {
+    max-width: 275px;
+  }
 }
 
 .xplode-info-text {

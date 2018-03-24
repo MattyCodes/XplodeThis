@@ -4,10 +4,22 @@
       .col-sm-12.col-md-12.col-lg-12{ style: "padding: 33px; min-height: 300px; background-image: url(#{@city.header_image.url}); background-size: cover;" }
         %h2.city-header= "Xplode #{@city.name}  |  #{@city.date}"
         %h3.city-subheader= "#{@city.venue}  |  #{@city.time}"
+        .text-right{ style: "margin-top: 40px; margin-right: 5%;" }
+          %h3.city-subheader.display-block.small-line-height
+            = link_to "More About Xplode >", about_path
+          - if @city.schedule.present?
+            %h3.city-subheader.display-block.small-line-height
+              = link_to "#{@city&.name} Schedule >", schedule_path(@city.schedule)
     - else
       .col-sm-12.col-md-12.col-lg-12{ style: "background-color: #9e9e9e; min-height: 300px; padding: 33px;" }
         %h2.city-header= "Xplode #{@city.name}  |  #{@city.date}"
         %h3.city-subheader= "#{@city.venue}  |  #{@city.time}"
+        .text-right{ style: "margin-top: 40px; margin-right: 5%;" }
+          %h3.city-subheader.display-block.small-line-height
+            = link_to "More About Xplode >", about_path
+          - if @city.schedule.present?
+            %h3.city-subheader.display-block.small-line-height
+              = link_to "#{@city&.name} Schedule >", schedule_path(@city.schedule)
   - if @city.event_ticket_code.present?
     .row
       .col-sm-12.col-md-12.col-lg-12
