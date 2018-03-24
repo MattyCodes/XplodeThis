@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :cities, param: :slug
   resources :schedules, param: :slug
   resources :sponsor_logos
-  resources :schedule_panels, only: [:destroy]
+  resources :schedule_panels, only: [:destroy, :update, :create, :edit]
   namespace :admin do
     namespace :doublesecret do
       devise_for :users, controllers: { sessions: 'users/sessions', registrations: 'users/registrations' }

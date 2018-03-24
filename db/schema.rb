@@ -36,14 +36,14 @@ ActiveRecord::Schema.define(version: 20180324000543) do
     t.string  "title"
   end
 
+  create_table "schedule_panels_speakers", force: :cascade do |t|
+    t.integer "speaker_id"
+    t.integer "schedule_panel_id"
+  end
+
   create_table "schedules", force: :cascade do |t|
     t.integer "city_id"
     t.string  "slug"
-  end
-
-  create_table "speaker_schedule_panels", force: :cascade do |t|
-    t.integer "speaker_id"
-    t.integer "schedule_panel_id"
   end
 
   create_table "speakers", force: :cascade do |t|

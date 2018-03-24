@@ -1,0 +1,4 @@
+.container-fluid
+  = @schedule.inspect
+  - @schedule.schedule_panels.each do |panel|
+    = panel.inspect

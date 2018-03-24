@@ -4,7 +4,7 @@ class SchedulesController < ApplicationController
   def create
     @city = City.find_by_id(params[:id])
     redirect_to root_path if !@city.present? || @city.schedule.present?
-    @schedule = Schedule.create(city_id: @city.id, slug: "#{@city.name.downcase.gsub(' ', '-') + '-schedule'}")
+    @schedule = Schedule.create(city_id: @city.id, slug: "#{@city.slug.downcase.gsub(' ', '-') + '-schedule'}")
     if @schedule.present? then redirect_to schedule_path(@schedule) else redirect_to root_path end
   end
 
@@ -13,9 +13,13 @@ class SchedulesController < ApplicationController
   end
 
   def update
-  end
-
-  def update_panels
+    find_by_slug_or_redirect
+    if @schedule.update_attributes(schedule_params)
+      redirect_to schedule_path(@schedule)
+    else
+      @errors = "Something went wrong and the schedule could not be updated."
+      render 'edit'
+    end
   end
 
   def show
@@ -37,6 +41,6 @@ class SchedulesController < ApplicationController
   end
 
   def schedule_params
-    params.require(:speaker).permit(:slug, schedule_panels: [])
+    params.permit(:slug, schedule_panels: [])
   end
 end

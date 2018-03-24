@@ -1,0 +1,23 @@
+.container.text-center{ style: "margin-top: 75px; margin-bottom: 100px;" }
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+      %h2.form-header Update Schedule
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+      .row
+        = simple_form_for @schedule do |f|
+          - if @errors
+            %code{ style: "margin-bottom: 35px; display: block;" }= @errors
+          .row
+            .form-group.col-xs-12.col-sm-12.col-md-12.col-lg-12{ style: "margin-bottom: 50px;" }
+              %label.users-label{ for: "slug" } Slug
+              = f.input :slug, label: false, placeholder: "ft-lauderdale-schedule"
+          .row
+            .form-group.col-sm-12.col-md-12.col-lg-12
+              = f.submit "Update Schedule", class: "btn btn-lg btn-primary btn-rounded"
+          .row
+            .form-group.col-sm-12.col-md-12.col-lg-12{ style: "margin: 25px 0px;" }
+              %hr{ style: "border-width: 2px; border-color: #dddddd;" }
+          .row
+            .form-group.col-sm-12.col-md-12.col-lg-12
+              = react_component "SchedulePanelSelector", { currentPanels: @schedule.schedule_panels.map(&:as_json), scheduleId: @schedule.id, speakers: Speaker.all.map(&:as_json) }

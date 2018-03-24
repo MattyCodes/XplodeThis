@@ -6,4 +6,14 @@ class Speaker < ApplicationRecord
   def to_param
     slug
   end
+
+  def as_json(args = nil)
+    {
+      id: id,
+      title: title,
+      name: name,
+      avatar_url: avatar_url,
+      slug: slug
+    }
+  end
 end
