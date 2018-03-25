@@ -102,3 +102,61 @@
   padding-left: 10px;
   padding-bottom: 5px;
 }
+
+.about-success-section {
+  background-color: #000;
+  > div {
+    text-align: center;
+    padding: 50px;
+    > img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 2px;
+      margin: 25px auto;
+    }
+    > h4 {
+      color: #f3f3f3;
+      font-size: 30px;
+      padding-bottom: 15px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      word-spacing: 2px;
+    }
+    > p {
+      color: #f3f3f3;
+      line-height: 30px;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.about-thumb-icon {
+  font-size: 75px;
+  color: #f3f3f3;
+  padding-top: 25px;
+}
+
+.about-testimonial-section {
+  background-color: #181818;
+  > div {
+    padding: 45px 15px;
+    > h4 {
+      color: #f3f3f3;
+      text-transform: uppercase;
+      font-weight: 900;
+      font-size: 25px;
+      letter-spacing: 1px;
+      word-spacing: 2px;
+      line-height: 50px;
+      padding: 0px 25px;
+    }
+    > p {
+      color: #f3f3f3;
+      font-size: 17px;
+      letter-spacing: 1px;
+      word-spacing: 2px;
+      padding: 0px 30px 15px 30px;
+    }
+  }
+}
