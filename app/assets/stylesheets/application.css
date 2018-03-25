@@ -311,3 +311,7 @@ button:active {
   font-weight: 900;
   letter-spacing: 2px;
 }
+
+.footer-msg {
+  padding: 0px 25px;
+}
