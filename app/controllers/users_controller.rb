@@ -12,7 +12,8 @@ class UsersController < ApplicationController
       email: params[:email]
     }
 
-    HomeMailer.send_mail(data).deliver
+    email = HomeMailer.send_mail(data)
+    email.deliver_now
     redirect_to root_path(submitted: true)
   end
 end
