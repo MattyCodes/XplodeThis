@@ -1,4 +1,75 @@
 .container-fluid
-  = @schedule.inspect
-  - @schedule.schedule_panels.each do |panel|
-    = panel.inspect
+  .row
+    - if @schedule.city.header_image.present?
+      .col-sm-12.col-md-12.col-lg-12{ style: "padding: 33px; min-height: 300px; background-image: url(#{@schedule.city.header_image.url}); background-size: cover;" }
+        %h2.city-header= "Xplode #{@schedule.city.name}  |  #{@schedule.city.date}"
+        %h3.city-subheader= "#{@schedule.city.venue}  |  #{@schedule.city.time}"
+        .text-right{ style: "margin-top: 40px; margin-right: 5%;" }
+          %h3.city-subheader.display-block.small-line-height
+            = link_to "More About Xplode >", about_path
+    - else
+      .col-sm-12.col-md-12.col-lg-12{ style: "background-color: #9e9e9e; min-height: 300px; padding: 33px;" }
+        %h2.city-header= "Xplode #{@schedule.city.name}  |  #{@schedule.city.date}"
+        %h3.city-subheader= "#{@schedule.city.venue}  |  #{@schedule.city.time}"
+        .text-right{ style: "margin-top: 40px; margin-right: 5%;" }
+          %h3.city-subheader.display-block.small-line-height
+            = link_to "More About Xplode >", about_path
+  .row{ style: "background-color: #354151;" }
+    .col-sm-12.col-md-12.col-lg-12.schedule-section
+      %h2.schedule-header= "Xplode #{@schedule.city.name} | #{@schedule.city.day}, #{@schedule.city.date}"
+      %h3.schedule-header= "Xplode #{@schedule.city.venue} | #{@schedule.city.time}"
+    .col-sm-12.col-md-12.col-lg-12
+      .panel.panel-body.schedule-panel
+        %h3 Xplode Session Schedule
+        - @schedule.schedule_panels.with_valid_time.sort_by { |panel| panel.time.to_time }.each do |panel|
+          .row
+            .col-sm-12.col-md-12.col-lg-12.panel-section
+              .panel-header
+                = "#{panel.time} | #{panel.title}"
+                %span.glyphicon.arrow_span.glyphicon-menu-up
+              .row.panel-content
+                - panel.speakers.each do |speaker|
+                  .row
+                    .col-sm-12.col-md-4.col-lg-4
+                      = link_to speaker_path(speaker) do
+                        = image_tag speaker.avatar_url, class: "panel-speaker-img"
+                    .col-sm-12.col-md-8.col-lg-8
+                      %p.panel-speaker-info
+                        ="#{speaker.name}"
+                        %br
+                        ="#{speaker.title}"
+                .row
+                  .col-sm-12.col-md-12.col-lg-12
+                    %p.panel-session-info
+                      = "#{@schedule.city.day}, #{@schedule.city.date}"
+                      %br
+                      = "#{@schedule.city.venue} | #{@schedule.city.time}"
+    - if @schedule.city.sponsor_logos.present?
+      .row
+        .col-sm-12.col-md-12.col-lg-12.city-sponsor-logos
+          - @schedule.city.sponsor_logos.each do |logo|
+            = link_to ( logo.link.present? ? logo.link : '#' ) do
+              = image_tag logo.logo&.url, class: "city-sponsor-logo"
+  - if @schedule.city.event_ticket_code.present?
+    .row
+      .col-sm-12.col-md-12.col-lg-12
+        .row
+          .col-sm-12.col-md-12.col-lg-12.buy-passes-toggle Buy Passes
+          .col-sm-12.col-md-12.col-lg-12.buy-passes-content= @schedule.city.event_ticket_code.html_safe
+  .row
+    .col-sm-12.col-md-12.col-lg-12.xplode-info.text-center
+      .row
+        .col-sm-12.col-md-12.col-lg-12
+          = image_tag "xplode-blue-transparent.png", class: "xplode-info-img"
+      .row
+        .col-sm-12.col-md-12.col-lg-12
+          %p.xplode-info-text-bold
+            Where top REALTORS come to get the latest tech, digital marketing and sales strategies to grow their businesses.
+      .row
+        .col-sm-12.col-md-12.col-lg-12
+          %p.xplode-info-text
+            Xplode Conference is a jam-packed day of technology and digital marketing for the real estate professional. Come ready to absorb everything our industry experts have to offer. Leave with actionable items to immediately ignite your business!
+      .row
+        .col-sm-12.col-md-12.col-lg-12
+          = link_to about_path do
+            %button.xplode-btn Learn More About Xplode
