@@ -30,10 +30,10 @@
               .row.panel-content
                 - panel.speakers.each do |speaker|
                   .row
-                    .col-sm-12.col-md-4.col-lg-4
+                    .col-sm-12.col-md-5.col-lg-5
                       = link_to speaker_path(speaker) do
                         = image_tag speaker.avatar_url, class: "panel-speaker-img"
-                    .col-sm-12.col-md-8.col-lg-8
+                    .col-sm-12.col-md-7.col-lg-7
                       %p.panel-speaker-info
                         ="#{speaker.name}"
                         %br
@@ -46,7 +46,7 @@
                       = "#{@schedule.city.venue} | #{@schedule.city.time}"
     - if @schedule.city.sponsor_logos.present?
       .row
-        .col-sm-12.col-md-12.col-lg-12.city-sponsor-logos
+        .col-sm-12.col-md-12.col-lg-12.city-sponsor-logos{ style: "padding-bottom: 110px;" }
           - @schedule.city.sponsor_logos.each do |logo|
             = link_to ( logo.link.present? ? logo.link : '#' ) do
               = image_tag logo.logo&.url, class: "city-sponsor-logo"

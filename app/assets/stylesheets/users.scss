@@ -105,14 +105,20 @@
 
 .about-success-section {
   background-color: #000;
+  @media screen and (max-width: 991px) {
+    padding-bottom: 100px;
+  }
   > div {
     text-align: center;
-    padding: 50px;
+    padding: 100px 50px;
+    @media screen and (max-width: 991px) {
+      padding: 50px;
+    }
     > img {
       width: 100%;
       max-width: 600px;
-      border-radius: 2px;
-      margin: 25px auto;
+      border-radius: 3px;
+      margin: 20px auto 75px auto;
     }
     > h4 {
       color: #f3f3f3;
@@ -159,4 +165,43 @@
       padding: 0px 30px 15px 30px;
     }
   }
+}
+
+.skillbar-container {
+  margin-top: 20px;
+  @media screen and (max-width: 991px) {
+    margin-top: 75px;
+  }
+}
+
+.skillbar-section {
+  padding: 30px 15px;
+  position: relative;
+  > h5 {
+    color: #f3f3f3;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    word-spacing: 1px;
+    line-height: 35px;
+  }
+}
+
+.skillbar-background {
+  background: #f3f3f3;
+  height: 8px;
+  width: 95%;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 10px;
+}
+
+.skillbar-filler {
+  height: 8px;
+  background: #0275db;
+  position: absolute;
+  bottom: 10px;
+  border-radius: 5px;
 }
