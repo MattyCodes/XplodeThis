@@ -1,5 +1,5 @@
 class HomeMailer < ApplicationMailer
-  default from: "xplodeconference@gmail.com"
+  default from: ENV['FROM_ADDRESS']
 
   def send_mail(data)
     @data = data
