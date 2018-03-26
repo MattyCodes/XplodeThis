@@ -17,8 +17,7 @@ else
     }
 
     config.storage          = :fog
-    config.cache_dir        = "#{Rails.root}/tmp/uploads" 
-    config.s3_access_policy = :public_read
+    config.cache_dir        = "#{Rails.root}/tmp/uploads"
     config.fog_directory    = 'xplodethis'
     config.fog_attributes   = { 'Cache-Control'=>'max-age=315576000' }
   end
