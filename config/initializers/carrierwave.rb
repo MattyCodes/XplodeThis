@@ -21,6 +21,6 @@ CarrierWave.configure do |config|
     :path_style             => true
   }
 
-  config.fog_directory  = 'xplodethis'
+  # config.fog_directory  = 'xplodethis'
   config.fog_attributes = { 'Cache-Control'=>'max-age=315576000' }
 end
