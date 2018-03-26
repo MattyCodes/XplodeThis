@@ -16,8 +16,10 @@ else
       :path_style             => true
     }
 
-    config.storage        = :fog
-    config.fog_directory  = 'xplodethis'
-    config.fog_attributes = { 'Cache-Control'=>'max-age=315576000' }
+    config.storage          = :fog
+    config.cache_dir        = "#{Rails.root}/tmp/uploads" 
+    config.s3_access_policy = :public_read
+    config.fog_directory    = 'xplodethis'
+    config.fog_attributes   = { 'Cache-Control'=>'max-age=315576000' }
   end
 end
