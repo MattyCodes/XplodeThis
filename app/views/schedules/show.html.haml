@@ -16,7 +16,10 @@
             = link_to "More About Xplode >", about_path
   .row{ style: "background-color: #354151;" }
     .col-sm-12.col-md-12.col-lg-12.schedule-section
-      %h2.schedule-header= "Xplode #{@schedule.city.name} | #{@schedule.city.day}, #{@schedule.city.date}"
+      - if @schedule.city.day.present?
+        %h2.schedule-header= "Xplode #{@schedule.city.name} | #{@schedule.city.day}, #{@schedule.city.date}"
+      - else
+        %h2.schedule-header= "Xplode #{@schedule.city.name} | #{@schedule.city.date}"
       %h3.schedule-header= "Xplode #{@schedule.city.venue} | #{@schedule.city.time}"
     .col-sm-12.col-md-12.col-lg-12
       .panel.panel-body.schedule-panel
@@ -41,7 +44,7 @@
                 .row
                   .col-sm-12.col-md-12.col-lg-12
                     %p.panel-session-info
-                      = "#{@schedule.city.day}, #{@schedule.city.date}"
+                      = @schedule.city.day.present? ? "#{@schedule.city.day}, #{@schedule.city.date}" : "#{@schedule.city.date}"
                       %br
                       = "#{@schedule.city.venue} | #{@schedule.city.time}"
     - if @schedule.city.sponsor_logos.present?
