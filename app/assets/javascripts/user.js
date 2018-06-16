@@ -25,7 +25,7 @@ function isScrolledIntoView(elem) {
 function skillbarListener() {
   loadSkillbars();
 
-  $( document ).scroll(function() {
+  $('body').scroll(function() {
     loadSkillbars();
   })
 };
