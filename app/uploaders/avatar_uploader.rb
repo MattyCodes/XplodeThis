@@ -4,7 +4,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url(*args)
-    "default_avatar.png"
+    ActionController::Base.helpers.asset_path("default_avatar.png")
   end
 
   def extension_whitelist
