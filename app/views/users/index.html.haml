@@ -1,0 +1,10 @@
+.container.text-center{ style: "min-height: 100%; margin-top: 30px; padding-bottom: 50;" }
+  .panel.panel-body
+    - @users.all.each do |user|
+      .row
+        .col-sm-12.col-md-12.col-lg-12{ style: "border-bottom: 2px solid #EEEEEE; padding-top: 20px; padding-bottom: 20px;" }
+          %p= user.id
+          %p= user.email
+          %p= user.status
+          - if user.pending?
+            = link_to "Activate User", users_activate_path(id: user.id), class: 'btn btn-primary btn-lg', method: :post

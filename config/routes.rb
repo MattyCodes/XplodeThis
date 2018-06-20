@@ -11,10 +11,12 @@ Rails.application.routes.draw do
     end
   end
   post "users/submit_inquiry"
+  post "users/activate"
   post "cities/add_sponsor_logo"
   post "cities/remove_sponsor_logo"
   post "schedules/:id/create" => "schedules#create", :as => "schedule_create"
   post "schedule_panels/:id/remove_speaker" => "schedule_panels#remove_speaker"
   post "schedule_panels/:id/add_speaker" => "schedule_panels#add_speaker"
   get  "about" => "users#about"
+  get  "users" => "users#index"
 end
