@@ -25,3 +25,9 @@
   = link_to "Edit Schedule", edit_schedule_path(@schedule), class: "btn btn-warning btn-rounded display-block admin-action-btn"
   = link_to schedule_path(@schedule), method: :delete do
     %button.btn.btn-danger.display-block.btn-rounded.admin-action-btn Delete Schedule
+%hr{ style: "border-width: 2px; border-color: #D3D3D3" }
+= link_to "Users List", users_path, class: "btn btn-info btn-rounded display-block admin-action-btn"
+= link_to "Logos List", sponsor_logos_path, class: "btn btn-info btn-rounded display-block admin-action-btn"
+= link_to "Speakers List", speakers_path, class: "btn btn-info btn-rounded display-block admin-action-btn"
+= link_to "Cities List", cities_path, class: "btn btn-info btn-rounded display-block admin-action-btn"
+= link_to "Schedules List", schedules_path, class: "btn btn-info btn-rounded display-block admin-action-btn"

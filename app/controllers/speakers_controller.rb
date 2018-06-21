@@ -1,5 +1,5 @@
 class SpeakersController < ApplicationController
-  before_action :authenticate_admin_doublesecret_user!, only: [:new, :create, :destroy, :edit, :update]
+  before_action :authenticate_admin_doublesecret_user!, only: [:new, :create, :destroy, :edit, :update, :index]
 
   def show
     @speaker = Speaker.where(slug: params[:slug]).first
@@ -36,7 +36,7 @@ class SpeakersController < ApplicationController
   end
 
   def index
-    redirect_to root_path
+    @speakers = Speaker.all
   end
 
   def destroy

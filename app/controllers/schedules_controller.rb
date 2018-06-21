@@ -1,5 +1,5 @@
 class SchedulesController < ApplicationController
-  before_action :authenticate_admin_doublesecret_user!, only: [:create, :destroy, :edit, :update]
+  before_action :authenticate_admin_doublesecret_user!, only: [:create, :destroy, :edit, :update, :index]
 
   def create
     @city = City.find_by_id(params[:id])
@@ -30,7 +30,11 @@ class SchedulesController < ApplicationController
   def destroy
     find_by_slug_or_redirect
     @schedule.destroy
-    redirect_to root_path
+    redirect_to schedules_path
+  end
+
+  def index
+    @schedules = Schedule.all
   end
 
   private

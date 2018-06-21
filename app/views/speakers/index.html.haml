@@ -1,0 +1,12 @@
+.container.text-center{ style: "min-height: 100%; margin-top: 30px; padding-bottom: 100px;" }
+  - @speakers.in_groups_of(2).each do |speaker_group|
+    .row
+      - speaker_group.each do |speaker|
+        - if speaker.present?
+          .col-sm-12.col-md-6.col-lg-6{ style: "margin-top: 30px; margin-bottom: 30px;" }
+            = link_to speaker_path(speaker) do
+              %h2.form-header{ style: "margin: 30px auto;" }= speaker&.name
+              = image_tag speaker.avatar.url, style: "width: 100%; max-width: 300px; max-height: 400px; object-fit: cover; border-radius: 4px; margin: 25px 15px 25px 15px;"
+            %br
+            = link_to 'Edit Speaker', edit_speaker_path(speaker), class: 'btn btn-warning btn-lg'
+            = link_to 'Delete Speaker', speaker_path(speaker), class: 'btn btn-danger btn-lg', method: :delete

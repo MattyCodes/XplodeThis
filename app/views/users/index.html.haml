@@ -6,5 +6,6 @@
           %p= user.id
           %p= user.email
           %p= user.status
+          = link_to "Delete User", users_destroy_path(id: user.id), class: 'btn btn-danger btn-lg', method: :post
           - if user.pending?
             = link_to "Activate User", users_activate_path(id: user.id), class: 'btn btn-primary btn-lg', method: :post

@@ -1,0 +1,12 @@
+.container.text-center{ style: "min-height: 100%; margin-top: 30px; padding-bottom: 100px;" }
+  - @schedules.in_groups_of(2).each do |schedule_group|
+    .row
+      - schedule_group.each do |schedule|
+        - if schedule.present?
+          .col-sm-12.col-md-6.col-lg-6{ style: "margin-top: 30px; margin-bottom: 30px;" }
+            = link_to schedule_path(schedule) do
+              %h2.form-header{ style: "margin: 30px auto;" }= "#{schedule.city&.name} - Schedule "
+              = image_tag schedule.city&.header_image.url, style: "width: 100%; max-width: 300px; max-height: 400px; object-fit: cover; border-radius: 4px; margin: 25px 15px 25px 15px;"
+            %br
+            = link_to 'Edit Schedule', edit_schedule_path(schedule), class: 'btn btn-warning btn-lg'
+            = link_to 'Delete Schedule', schedule_path(schedule), class: 'btn btn-danger btn-lg', method: :delete

@@ -1,8 +1,8 @@
 class CitiesController < ApplicationController
-  before_action :authenticate_admin_doublesecret_user!, only: [:new, :create, :destroy, :edit, :update]
+  before_action :authenticate_admin_doublesecret_user!, only: [:new, :create, :destroy, :edit, :update, :index]
 
   def index
-    redirect_to root_path
+    @cities = City.all
   end
 
   def new
@@ -36,7 +36,7 @@ class CitiesController < ApplicationController
   def destroy
     find_by_slug_or_redirect
     @city.destroy
-    redirect_to root_path
+    redirect_to cities_path
   end
 
   def show

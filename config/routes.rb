@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   post "users/submit_inquiry"
   post "users/activate"
+  post "users/destroy"
   post "cities/add_sponsor_logo"
   post "cities/remove_sponsor_logo"
   post "schedules/:id/create" => "schedules#create", :as => "schedule_create"

@@ -3,7 +3,10 @@
     .row
       - group.each do |logo|
         - if logo.present?
-          = link_to edit_sponsor_logo_path(logo) do
-            .col-sm-12.col-md-6.col-lg-6{ style: "margin-top: 30px; margin-bottom: 30px;" }
+          .col-sm-12.col-md-6.col-lg-6{ style: "margin-top: 30px; margin-bottom: 30px;" }
+            = link_to sponsor_logo_path(logo) do
               %h2.form-header{ style: "margin: 30px auto;" }= logo&.name
               = image_tag logo.logo.url, style: "width: 100%; max-width: 300px; max-height: 400px; object-fit: cover; border-radius: 4px; margin: 25px 15px 25px 15px;"
+            %br
+            = link_to 'Edit Logo', edit_sponsor_logo_path(logo), class: 'btn btn-warning btn-lg'
+            = link_to 'Delete Logo', sponsor_logo_path(logo), class: 'btn btn-danger btn-lg', method: :delete

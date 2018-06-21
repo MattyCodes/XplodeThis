@@ -1,0 +1,12 @@
+.container.text-center{ style: "min-height: 100%; margin-top: 30px; padding-bottom: 100px;" }
+  - @cities.in_groups_of(2).each do |city_group|
+    .row
+      - city_group.each do |city|
+        - if city.present?
+          .col-sm-12.col-md-6.col-lg-6{ style: "margin-top: 30px; margin-bottom: 30px;" }
+            = link_to city_path(city) do
+              %h2.form-header{ style: "margin: 30px auto;" }= city&.name
+              = image_tag city.header_image.url, style: "width: 100%; max-width: 300px; max-height: 400px; object-fit: cover; border-radius: 4px; margin: 25px 15px 25px 15px;"
+            %br
+            = link_to 'Edit City', edit_city_path(city), class: 'btn btn-warning btn-lg'
+            = link_to 'Delete City', city_path(city), class: 'btn btn-danger btn-lg', method: :delete

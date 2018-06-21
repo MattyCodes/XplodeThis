@@ -52,6 +52,10 @@ a:focus {
   display: block;
 }
 
+.panel-links-container {
+  padding-top: 30px;
+}
+
 #admin-actions-panel {
   position: fixed;
   width: 50px;
@@ -85,7 +89,6 @@ a:focus {
 
 .admin-action-btn {
   width: 100%;
-  max-width: 200px;
   margin: 15px 0px;
 }
 

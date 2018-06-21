@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_admin_doublesecret_user!, only: [:index, :activate]
+  before_action :authenticate_admin_doublesecret_user!, only: [:index, :activate, :destroy]
 
   def home
     @logos = SponsorLogo.to_display_on_home_page
@@ -25,10 +25,22 @@ class UsersController < ApplicationController
 
   def activate
     user = User.find_by_id params[:id]
+
     if !user.present?
       redirect_to root_path
     else
       user.active!
+      redirect_to users_path
+    end
+  end
+
+  def destroy
+    user = User.find_by_id params[:id]
+
+    if !user.present?
+      redirect_to root_path
+    else
+      user.destroy
       redirect_to users_path
     end
   end
