@@ -43,34 +43,16 @@ class CitiesController < ApplicationController
     find_by_slug_or_redirect
   end
 
-  def add_sponsor_logo
-    @city = City.find_by_id(params[:parentId])
-    @logo = SponsorLogo.find_by_id(params[:logoId])
+  def set_sponsor_logos
+    @city  = City.find_by_id(params[:parentId])
+    @logos = params[:logoIds].map{ |id| SponsorLogo.find_by_id(id) }
 
-    if @city.present? && @logo.present?
-      @city.sponsor_logos.push(@logo)
-
-      render json: {
-        success: true,
-        currentLogos: @city.sponsor_logos.map { |sl| { name: sl.name, imageUrl: sl.logo&.url, id: sl.id } },
-        availableLogos: SponsorLogo.all.select { |sl| !sl.cities.include? @city }.map { |sl| { name: sl.name, imageUrl: sl.logo&.url, id: sl.id } }
-      }
-    else
-      render json: { success: false }
-    end
-  end
-
-  def remove_sponsor_logo
-    @city = City.find_by_id(params[:parentId])
-    @logo = SponsorLogo.find_by_id(params[:logoId])
-
-    if @city.present? && @logo.present?
-      @city.sponsor_logos.delete(@logo)
+    if @city.present? && @logos.present?
+      @city.sponsor_logos = @logos
 
       render json: {
         success: true,
-        currentLogos: @city.sponsor_logos.map { |sl| { name: sl.name, imageUrl: sl.logo&.url, id: sl.id } },
-        availableLogos: SponsorLogo.all.select { |sl| !sl.cities.include? @city }.map { |sl| { name: sl.name, imageUrl: sl.logo&.url, id: sl.id } }
+        logos: SponsorLogo.all.map { |sl| { name: sl.name, imageUrl: sl.logo&.url, id: sl.id, selected: ( sl.cities.include? @city ) } }
       }
     else
       render json: { success: false }

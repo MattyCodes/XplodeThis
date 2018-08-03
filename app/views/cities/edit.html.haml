@@ -43,5 +43,8 @@
             .form-group.col-sm-12.col-md-12.col-lg-12{ style: "margin-bottom: 40px;" }
               = f.submit "Update City", class: "btn btn-lg btn-primary btn-rounded"
           .row
+            .form-group.col-sm-12.col-md-12.col-lg-12
+              %hr{ style: "border: 2px solid #e3e3e3;" }
+          .row
             .form-group.col-sm-12.col-md-12.col-lg-12{ style: "margin-bottom: 100px;" }
-              = react_component("SponsorLogoSelector", { parentId: @city.id, parentType: "city", currentLogos: @city.sponsor_logos.map { |sl| { name: sl.name, imageUrl: sl.logo&.url, id: sl.id } }, availableLogos: SponsorLogo.all.select { |sl| !sl.cities.include? @city }.map { |sl| { name: sl.name, imageUrl: sl.logo&.url, id: sl.id } } })
+              = react_component("SponsorLogoSelector", { parentId: @city.id, parentType: "city", logos: SponsorLogo.all.map { |sl| { name: sl.name, imageUrl: sl.logo&.url, id: sl.id, selected: ( sl.cities.include? @city ) } } })
