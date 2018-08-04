@@ -71,7 +71,7 @@ a:focus {
 }
 
 #admin-actions-panel.active {
-  height: 400px;
+  height: 500px;
   width: 300px;
   padding: 15px;
   overflow-y: auto;

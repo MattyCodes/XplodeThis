@@ -186,6 +186,11 @@ class SponsorLogoSelector extends React.Component {
 
     let self    = this;
     let logoIds = [];
+    let url     = '/cities/set_sponsor_logos';
+
+    if ( this.props.parentType == 'home' ) {
+      url = 'order_home_logos';
+    };
 
     logoIds = this.state.logos.map(function(logo) {
       if ( logo && logo.selected ) return logo.id;
@@ -193,7 +198,7 @@ class SponsorLogoSelector extends React.Component {
 
     $.ajax({
       method: "POST",
-      url: "/cities/set_sponsor_logos",
+      url: url,
       data: { parentId: this.props.parentId, logoIds: logoIds }
     })
     .done(function(res) {
@@ -203,7 +208,7 @@ class SponsorLogoSelector extends React.Component {
           draggingLogo: null
         });
 
-        alert("City logos have been updated!");
+        alert("Logos have been updated!");
       } else {
         alert("Something went wrong and the logos could not be updated. Try refreshing the page and trying again.");
       }

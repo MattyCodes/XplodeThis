@@ -1,6 +1,4 @@
 class SponsorLogo < ApplicationRecord
-  scope :to_display_on_home_page, -> { where(display_on_home_page: true) }
-
   validates :logo, presence: true
   validates :name, presence: true
   has_many :city_logo_dependencies
@@ -13,6 +11,22 @@ class SponsorLogo < ApplicationRecord
       city_logo_dependencies.where(city: city).first&.index
     else
       nil
+    end
+  end
+
+  def self.for_home_page
+    SponsorLogo.where.not(home_index: nil).order(home_index: :asc)
+  end
+
+  def self.for_home_page_json
+    logos = ( SponsorLogo.for_home_page + SponsorLogo.all ).uniq
+    logos.map do |logo|
+      {
+        id: logo.id,
+        name: logo.name,
+        imageUrl: logo.logo&.url,
+        selected: ( logo.home_index.present? )
+      }
     end
   end
 end

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_admin_doublesecret_user!, only: [:index, :activate, :destroy]
 
   def home
-    @logos = SponsorLogo.to_display_on_home_page
+    @logos = SponsorLogo.for_home_page
   end
 
   def about

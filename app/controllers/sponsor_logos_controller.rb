@@ -38,6 +38,27 @@ class SponsorLogosController < ApplicationController
     redirect_to sponsor_logo_path(@logo) if @logo.update_attributes(logo_params)
   end
 
+  def home
+  end
+
+  def order_for_home_page
+    ids_array = ( params[:logoIds] || [] )
+
+    SponsorLogo.where.not(home_index: nil).map do |logo|
+      logo.update_attributes(home_index: nil) if !ids_array.include?(logo.id)
+    end
+
+    ids_array.each_with_index.map do |id, index|
+      logo = SponsorLogo.find_by_id(id)
+      logo.update_attributes(home_index: index) if logo.present?
+    end
+
+    render json: {
+      success: true,
+      logos: SponsorLogo.for_home_page_json
+    }
+  end
+
   private
 
   def logo_params

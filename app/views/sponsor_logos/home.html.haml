@@ -1,0 +1,9 @@
+.container.text-center{ style: "margin-top: 75px;" }
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+      %h2.form-header Select and Order Home Page Logos
+  .row
+    .col-sm-12.col-md-12.col-lg-12
+      .row
+        .form-group.col-sm-12.col-md-12.col-lg-12{ style: "margin-bottom: 100px;" }
+          = react_component("SponsorLogoSelector", { parentType: "home", logos: SponsorLogo.for_home_page_json })

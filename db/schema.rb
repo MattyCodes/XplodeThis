@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180620204611) do
+ActiveRecord::Schema.define(version: 20180804154240) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
@@ -60,12 +60,12 @@ ActiveRecord::Schema.define(version: 20180620204611) do
   end
 
   create_table "sponsor_logos", force: :cascade do |t|
-    t.string   "name",                                 null: false
-    t.string   "logo",                                 null: false
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
-    t.boolean  "display_on_home_page", default: false
+    t.string   "name",       null: false
+    t.string   "logo",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string   "link"
+    t.integer  "home_index"
   end
 
   create_table "users", force: :cascade do |t|
