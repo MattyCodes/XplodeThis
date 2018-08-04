@@ -28,6 +28,6 @@ class City < ApplicationRecord
   end
 
   def destroy_schedule
-    self.schedule.destroy
+    self.schedule.destroy if self.schedule.present?
   end
 end

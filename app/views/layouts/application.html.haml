@@ -31,15 +31,14 @@
               = link_to 'Home', root_path
             %li{class: ("active" if controller_name == 'users' && action_name == 'about_us')}
               = link_to 'About Us', about_path
-            -# %li{class: ("active" if controller_name == 'users' && action_name == 'contact')}
-            -#   = link_to 'Contact', root_path
-            %li.dropdown
-              = link_to '#', 'data-toggle' => 'dropdown', 'role' => 'button', 'aria-expanded' => 'false', 'class' => 'dropdown-toggle' do
-                Xplode Tour Cities
-                %span.caret
-              %ul.dropdown-menu{ role: :menu }
-                - City.all.each do |city|
-                  %li= link_to city.name, city_path(city)
+            - if City.count > 0
+              %li.dropdown
+                = link_to '#', 'data-toggle' => 'dropdown', 'role' => 'button', 'aria-expanded' => 'false', 'class' => 'dropdown-toggle' do
+                  Xplode Tour Cities
+                  %span.caret
+                %ul.dropdown-menu{ role: :menu }
+                  - City.all.each do |city|
+                    %li= link_to city.name, city_path(city)
     = yield
     - if admin_doublesecret_user_signed_in?
       #admin-actions-panel
