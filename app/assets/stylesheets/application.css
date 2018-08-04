@@ -201,6 +201,19 @@ nav {
   border-bottom: 2px solid #0e74b5 !important;
 }
 
+.droppable {
+  min-height: 75px;
+  transition: all 250ms;
+}
+
+.droppable.active {
+  border: 2px dashed #0275db;
+  background: #0275db52;
+  margin: 25px 0px;
+  border-radius: 5px;
+  box-sizing: content-box;
+}
+
 /* Footer Style */
 
 footer {

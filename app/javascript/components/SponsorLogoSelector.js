@@ -15,7 +15,7 @@ class SponsorLogoSelector extends React.Component {
     var availableLogos = this.generateList('available');
 
     return (
-      <div className="row" style={{ marginTop: '30px' }}>
+      <div className="row">
         <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
           <h2 className="form-header"> Selected Logos </h2>
           { currentLogos }
@@ -36,6 +36,11 @@ class SponsorLogoSelector extends React.Component {
   handleDrag(e) {
     e.stopPropagation();
     e.preventDefault();
+    $(e.target).addClass('active');
+  };
+
+  handleDragLeave(e) {
+    $(e.target).removeClass('active');
   };
 
   updateDraggingLogo(e, logo) {
@@ -73,6 +78,7 @@ class SponsorLogoSelector extends React.Component {
     };
 
     this.setState({ logos: ( theseLogos.concat(thoseLogos) ), draggingLogo: null });
+    this.removeAllActive();
   };
 
   droppedEnd(selected) {
@@ -85,6 +91,7 @@ class SponsorLogoSelector extends React.Component {
     logos.push(logo);
 
     this.setState({ logos: logos });
+    this.removeAllActive();
   };
 
   dropSelect() {
@@ -96,6 +103,7 @@ class SponsorLogoSelector extends React.Component {
     });
 
     this.setState({ logos: logos });
+    this.removeAllActive();
   };
 
   dropUnselect() {
@@ -107,6 +115,11 @@ class SponsorLogoSelector extends React.Component {
     });
 
     this.setState({ logos: logos });
+    this.removeAllActive();
+  };
+
+  removeAllActive() {
+    $('.droppable').removeClass('active');
   };
 
   generateList(logoType) {
@@ -127,7 +140,7 @@ class SponsorLogoSelector extends React.Component {
               className="droppable"
               onDrop={ (e) => self.droppedBefore(e, logo) }
               onDragOver={ (e) => self.handleDrag(e) }
-              style={{ height: '75px' }}
+              onDragLeave={ (e) => self.handleDragLeave(e) }
             >
             </div>
             <div className="draggable" onDragStart={ (e) => self.updateDraggingLogo(e, logo) }>
@@ -148,7 +161,7 @@ class SponsorLogoSelector extends React.Component {
           className="droppable"
           onDrop={ () => self.dropSelect() }
           onDragOver={ (e) => self.handleDrag(e) }
-          style={{ height: '75px' }}
+          onDragLeave={ (e) => self.handleDragLeave(e) }
         >
         </div>
       );
@@ -158,7 +171,7 @@ class SponsorLogoSelector extends React.Component {
           className="droppable"
           onDrop={ () => self.dropUnselect() }
           onDragOver={ (e) => self.handleDrag(e) }
-          style={{ height: '75px' }}
+          onDragLeave={ (e) => self.handleDragLeave(e) }
         >
         </div>
       );
@@ -169,7 +182,7 @@ class SponsorLogoSelector extends React.Component {
           className="droppable"
           onDrop={ () => self.droppedEnd(selected) }
           onDragOver={ (e) => self.handleDrag(e) }
-          style={{ height: '75px' }}
+          onDragLeave={ (e) => self.handleDragLeave(e) }
           key={ 'end-drop-zone-' + hasValues }
         >
         </div>
