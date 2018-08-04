@@ -75,44 +75,19 @@ class SponsorLogoSelector extends React.Component {
     this.setState({ logos: ( theseLogos.concat(thoseLogos) ), draggingLogo: null });
   };
 
-  droppedAfter(e, prevLogo) {
-    let selected      = prevLogo.selected;
-    let nextLogo      = this.state.draggingLogo;
-    let theseLogos    = [];
-    let thoseLogos    = [];
+  droppedEnd(selected) {
+    let logo        = this.state.draggingLogo;
+    let logos       = this.state.logos;
+    let removeIndex = logos.indexOf(logo);
 
-    this.state.logos.map(function(logo) {
-      if ( logo.selected == selected ) {
-        theseLogos.push(logo);
-      } else {
-        thoseLogos.push(logo);
-      };
-    });
+    logo['selected'] = selected;
+    logos.splice(removeIndex, 1);
+    logos.push(logo);
 
-    let nextLogoIndex = null;
-    let insertIndex   = null;
-    let prevLogoIndex = theseLogos.indexOf(prevLogo);
-    let logoInArray   = ( theseLogos.indexOf(nextLogo) != -1 );
-
-    nextLogo['selected'] = selected;
-
-    if ( logoInArray ) {
-      nextLogoIndex = theseLogos.indexOf(nextLogo);
-      prevLogoIndex = theseLogos.indexOf(prevLogo);
-      insertIndex   = ( prevLogoIndex == theseLogos.length - 2 ? prevLogoIndex : prevLogoIndex + 1 );
-      theseLogos.splice(nextLogoIndex, 1);
-      theseLogos.splice(insertIndex, 0, nextLogo);
-    } else {
-      nextLogoIndex = thoseLogos.indexOf(nextLogo);
-      insertIndex   = ( prevLogoIndex == theseLogos.length - 2 ? prevLogoIndex + 1 : prevLogoIndex + 1 );
-      thoseLogos.splice(nextLogoIndex, 1);
-      theseLogos.splice(insertIndex, 0, nextLogo);
-    };
-
-    this.setState({ logos: ( theseLogos.concat(thoseLogos) ), draggingLogo: null });
+    this.setState({ logos: logos });
   };
 
-  dropSelect(e) {
+  dropSelect() {
     let thisLogo = this.state.draggingLogo;
     let logos    = this.state.logos;
 
@@ -123,7 +98,7 @@ class SponsorLogoSelector extends React.Component {
     this.setState({ logos: logos });
   };
 
-  dropUnselect(e) {
+  dropUnselect() {
     let thisLogo = this.state.draggingLogo;
     let logos    = this.state.logos;
 
@@ -134,19 +109,14 @@ class SponsorLogoSelector extends React.Component {
     this.setState({ logos: logos });
   };
 
-  arraymove(arr, fromIndex, toIndex) {
-    let element = arr[fromIndex];
-    arr.splice(fromIndex, 1);
-    arr.splice(toIndex, 0, element);
-  };
-
   generateList(logoType) {
-    var self      = this;
-    var logos     = this.state.logos;
-    var selected  = false;
-    var available = false;
-    var hasValues = false;
-    var result    = logos.map(function(logo, index) {
+    var self        = this;
+    var logos       = this.state.logos;
+    var selected    = false;
+    var available   = false;
+    var hasValues   = false;
+    var endDropZone = null;
+    var result      = logos.map(function(logo, index) {
       selected  = ( logo && logoType == 'current' && logo.selected );
       available = ( logo && logoType == 'available' && !logo.selected );
 
@@ -157,18 +127,11 @@ class SponsorLogoSelector extends React.Component {
               className="droppable"
               onDrop={ (e) => self.droppedBefore(e, logo) }
               onDragOver={ (e) => self.handleDrag(e) }
-              style={{ height: '50px' }}
+              style={{ height: '75px' }}
             >
             </div>
             <div className="draggable" onDragStart={ (e) => self.updateDraggingLogo(e, logo) }>
               <img src={ logo.imageUrl } className="city-logo-list" />
-            </div>
-            <div
-              className="droppable"
-              onDrop={ (e) => self.droppedAfter(e, logo) }
-              onDragOver={ (e) => self.handleDrag(e) }
-              style={{ height: '50px' }}
-            >
             </div>
           </div>
         );
@@ -199,6 +162,20 @@ class SponsorLogoSelector extends React.Component {
         >
         </div>
       );
+    } else if ( hasValues ) {
+      selected    = ( logoType == 'current' ? true : false );
+      endDropZone = (
+        <div
+          className="droppable"
+          onDrop={ () => self.droppedEnd(selected) }
+          onDragOver={ (e) => self.handleDrag(e) }
+          style={{ height: '75px' }}
+          key={ 'end-drop-zone-' + hasValues }
+        >
+        </div>
+      );
+
+      result.push(endDropZone)
     };
 
     return result;

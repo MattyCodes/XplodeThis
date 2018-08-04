@@ -26,20 +26,20 @@
         .row
           .col-sm-12.col-md-12.col-lg-12.buy-passes-toggle Buy Passes
           .col-sm-12.col-md-12.col-lg-12.buy-passes-content= @city.event_ticket_code.html_safe
-  - if @city.sponsor_logos.present?
+  - if @sponsor_logos.present?
     .row
       .col-sm-12.col-md-12.col-lg-12.city-sponsor-logos
-        - @city.sponsor_logos[0..8].each do |logo|
+        - @sponsor_logos[0..8].each do |logo|
           = link_to ( logo.link.present? ? logo.link : '#' ) do
             = image_tag logo.logo&.url, class: "city-sponsor-logo"
   .row
     .col-sm-12.col-md-12.col-lg-12.city-info.text-center
       %h3= "Xplode #{@city.name}  |  #{@city.date}"
       %h4= "#{@city.venue}  |  #{@city.time}"
-  - if @city.sponsor_logos[9..-1].present?
+  - if @sponsor_logos[9..-1].present?
     .row
       .col-sm-12.col-md-12.col-lg-12.city-sponsor-logos.white
-        - @city.sponsor_logos[9..-1].each do |logo|
+        - @sponsor_logos[9..-1].each do |logo|
           = link_to ( logo.link.present? ? logo.link : '#' ) do
             = image_tag logo.logo&.url, class: "city-sponsor-logo"
   .row

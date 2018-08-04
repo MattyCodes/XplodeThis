@@ -25,9 +25,10 @@ ActiveRecord::Schema.define(version: 20180620204611) do
     t.string   "slug"
   end
 
-  create_table "cities_sponsor_logos", force: :cascade do |t|
+  create_table "city_logo_dependencies", force: :cascade do |t|
     t.integer "city_id"
     t.integer "sponsor_logo_id"
+    t.integer "index"
   end
 
   create_table "schedule_panels", force: :cascade do |t|

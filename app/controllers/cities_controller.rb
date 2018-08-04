@@ -41,16 +41,26 @@ class CitiesController < ApplicationController
 
   def show
     find_by_slug_or_redirect
+    @sponsor_logos = @city.ordered_logos
   end
 
   def set_sponsor_logos
     @city  = City.find_by_id(params[:parentId])
-    @logos = ( params[:logoIds] || [] ).map{ |id| SponsorLogo.find_by_id(id) }.compact
+    @logos = []
 
-    if @city.present? && @city.valid?
-      @city.update_attributes(sponsor_logos: [])
-      @city.update_attributes(sponsor_logos: @logos)
+    ( params[:logoIds] || [] ).each_with_index.map do |id, index|
+      logo = SponsorLogo.find_by_id(id)
 
+      if logo.present?
+        logo.city_logo_dependencies.where(city: @city).map do |dep|
+          dep.update_attributes(index: index)
+        end
+
+        @logos << logo
+      end
+    end
+
+    if @city.present? && @city.update_attributes(sponsor_logos: @logos)
       render json: {
         success: true,
         logos: @city.selected_and_available_logos

@@ -1,7 +1,8 @@
 class City < ApplicationRecord
   validates :slug, presence: true, uniqueness: { case_sensitive: false }
   validates :name, presence: true
-  has_and_belongs_to_many :sponsor_logos
+  has_many :city_logo_dependencies
+  has_many :sponsor_logos, through: :city_logo_dependencies
   has_one :schedule
   after_destroy :destroy_schedule
   mount_uploader :header_image, HeaderUploader
@@ -10,8 +11,12 @@ class City < ApplicationRecord
     slug
   end
 
+  def ordered_logos
+    self.sponsor_logos.sort_by { |logo| [ logo.city_index_for(self) ? 1 : 0, logo.city_index_for(self) ] }
+  end
+
   def selected_and_available_logos
-    logos = ( self.sponsor_logos + SponsorLogo.all ).uniq
+    logos = ( self.ordered_logos + SponsorLogo.all ).uniq
     logos.map do |logo|
       {
         id: logo.id,
