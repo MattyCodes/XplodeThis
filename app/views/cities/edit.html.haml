@@ -47,4 +47,4 @@
               %hr{ style: "border: 2px solid #e3e3e3;" }
           .row
             .form-group.col-sm-12.col-md-12.col-lg-12{ style: "margin-bottom: 100px;" }
-              = react_component("SponsorLogoSelector", { parentId: @city.id, parentType: "city", logos: SponsorLogo.all.map { |sl| { name: sl.name, imageUrl: sl.logo&.url, id: sl.id, selected: ( sl.cities.include? @city ) } } })
+              = react_component("SponsorLogoSelector", { parentId: @city.id, parentType: "city", logos: @city.selected_and_available_logos })

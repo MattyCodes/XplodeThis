@@ -25,7 +25,7 @@ class SponsorLogoSelector extends React.Component {
           { availableLogos }
         </div>
         <div className="col-sm-12 col-md-12 col-lg-12">
-          <button className="btn btn-lg btn-primary btn-rounded" onClick={ () => this.submitLogos() }>
+          <button className="btn btn-lg btn-primary btn-rounded" onClick={ (e) => this.submitLogos(e) }>
             Save Logos
           </button>
         </div>
@@ -72,25 +72,66 @@ class SponsorLogoSelector extends React.Component {
       theseLogos.splice(nextLogoIndex, 0, prevLogo);
     };
 
-    this.setState({ logos: ( theseLogos.concat(thoseLogos) ) });
+    this.setState({ logos: ( theseLogos.concat(thoseLogos) ), draggingLogo: null });
   };
 
   droppedAfter(e, prevLogo) {
-    // let prevLogo = this.state.draggingLogo;
-    // let allLogos = this.state.logos;
-    // let index    = ( allLogos.indexOf(nextLogo) - 1 );
-    //
-    // allLogos.splice(index, 0, prevLogo);
-    //
-    // debugger;
+    let selected      = prevLogo.selected;
+    let nextLogo      = this.state.draggingLogo;
+    let theseLogos    = [];
+    let thoseLogos    = [];
+
+    this.state.logos.map(function(logo) {
+      if ( logo.selected == selected ) {
+        theseLogos.push(logo);
+      } else {
+        thoseLogos.push(logo);
+      };
+    });
+
+    let nextLogoIndex = null;
+    let insertIndex   = null;
+    let prevLogoIndex = theseLogos.indexOf(prevLogo);
+    let logoInArray   = ( theseLogos.indexOf(nextLogo) != -1 );
+
+    nextLogo['selected'] = selected;
+
+    if ( logoInArray ) {
+      nextLogoIndex = theseLogos.indexOf(nextLogo);
+      prevLogoIndex = theseLogos.indexOf(prevLogo);
+      insertIndex   = ( prevLogoIndex == theseLogos.length - 2 ? prevLogoIndex : prevLogoIndex + 1 );
+      theseLogos.splice(nextLogoIndex, 1);
+      theseLogos.splice(insertIndex, 0, nextLogo);
+    } else {
+      nextLogoIndex = thoseLogos.indexOf(nextLogo);
+      insertIndex   = ( prevLogoIndex == theseLogos.length - 2 ? prevLogoIndex + 1 : prevLogoIndex + 1 );
+      thoseLogos.splice(nextLogoIndex, 1);
+      theseLogos.splice(insertIndex, 0, nextLogo);
+    };
+
+    this.setState({ logos: ( theseLogos.concat(thoseLogos) ), draggingLogo: null });
   };
 
   dropSelect(e) {
-    debugger;
+    let thisLogo = this.state.draggingLogo;
+    let logos    = this.state.logos;
+
+    logos.map(function(logo) {
+      if ( logo.id == thisLogo.id ) logo.selected = true;
+    });
+
+    this.setState({ logos: logos });
   };
 
   dropUnselect(e) {
-    debugger;
+    let thisLogo = this.state.draggingLogo;
+    let logos    = this.state.logos;
+
+    logos.map(function(logo) {
+      if ( logo.id == thisLogo.id ) logo.selected = false;
+    });
+
+    this.setState({ logos: logos });
   };
 
   arraymove(arr, fromIndex, toIndex) {
@@ -104,6 +145,7 @@ class SponsorLogoSelector extends React.Component {
     var logos     = this.state.logos;
     var selected  = false;
     var available = false;
+    var hasValues = false;
     var result    = logos.map(function(logo, index) {
       selected  = ( logo && logoType == 'current' && logo.selected );
       available = ( logo && logoType == 'available' && !logo.selected );
@@ -133,7 +175,11 @@ class SponsorLogoSelector extends React.Component {
       };
     });
 
-    if ( logoType == 'current' && result.length == 0 ) {
+    result.map(function(res) {
+      if ( res ) hasValues = true;
+    });
+
+    if ( logoType == 'current' && !hasValues ) {
       result = (
         <div
           className="droppable"
@@ -143,7 +189,7 @@ class SponsorLogoSelector extends React.Component {
         >
         </div>
       );
-    } else if ( logoType == 'available' && result.length == 0 ) {
+    } else if ( logoType == 'available' && !hasValues ) {
       result = (
         <div
           className="droppable"
@@ -158,7 +204,9 @@ class SponsorLogoSelector extends React.Component {
     return result;
   };
 
-  submitLogos() {
+  submitLogos(e) {
+    e.preventDefault();
+
     let self    = this;
     let logoIds = [];
 
@@ -168,7 +216,7 @@ class SponsorLogoSelector extends React.Component {
 
     $.ajax({
       method: "POST",
-      url: "cities/set_sponsor_logos",
+      url: "/cities/set_sponsor_logos",
       data: { parentId: this.props.parentId, logoIds: logoIds }
     })
     .done(function(res) {
@@ -177,8 +225,10 @@ class SponsorLogoSelector extends React.Component {
           logos: res.logos,
           draggingLogo: null
         });
+
+        alert("City logos have been updated!");
       } else {
-        alert("Something went wrong and the logo could not be added. Try refreshing the page and trying again.");
+        alert("Something went wrong and the logos could not be updated. Try refreshing the page and trying again.");
       }
     });
   };

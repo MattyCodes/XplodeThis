@@ -45,14 +45,15 @@ class CitiesController < ApplicationController
 
   def set_sponsor_logos
     @city  = City.find_by_id(params[:parentId])
-    @logos = params[:logoIds].map{ |id| SponsorLogo.find_by_id(id) }
+    @logos = ( params[:logoIds] || [] ).map{ |id| SponsorLogo.find_by_id(id) }.compact
 
-    if @city.present? && @logos.present?
-      @city.sponsor_logos = @logos
+    if @city.present? && @city.valid?
+      @city.update_attributes(sponsor_logos: [])
+      @city.update_attributes(sponsor_logos: @logos)
 
       render json: {
         success: true,
-        logos: SponsorLogo.all.map { |sl| { name: sl.name, imageUrl: sl.logo&.url, id: sl.id, selected: ( sl.cities.include? @city ) } }
+        logos: @city.selected_and_available_logos
       }
     else
       render json: { success: false }

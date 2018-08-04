@@ -10,6 +10,18 @@ class City < ApplicationRecord
     slug
   end
 
+  def selected_and_available_logos
+    logos = ( self.sponsor_logos + SponsorLogo.all ).uniq
+    logos.map do |logo|
+      {
+        id: logo.id,
+        name: logo.name,
+        imageUrl: logo.logo&.url,
+        selected: ( logo.cities.include?(self) )
+      }
+    end
+  end
+
   def destroy_schedule
     self.schedule.destroy
   end
