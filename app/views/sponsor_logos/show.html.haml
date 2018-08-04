@@ -8,8 +8,5 @@
         %h3.text-center{ style: "font-weight: 900; margin-bottom: 15px;" } Link:
         %p.text-center{ style: "font-size: 18px; letter-spacing: 1px;" }= @logo.link
   .row
-    .col-sm-12.col-md-12.col-lg-12.text-center{ style: "margin-bottom: 15px;" }
+    .col-sm-12.col-md-12.col-lg-12.text-center{ style: "margin-bottom: 45px;" }
       = image_tag @logo.logo_url, class: "preview_image"
-  .row
-    .col-sm-12.col-md-12.col-lg-12.text-center{ style: "margin-bottom: 75px;" }
-      %p{ style: "font-size: 20px; font-weight: 900;" }= "On Home Page: #{@logo.display_on_home_page.to_s.upcase}"
