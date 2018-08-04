@@ -1,7 +1,7 @@
 .container-fluid
   .row
     - if @city.header_image.present?
-      .col-sm-12.col-md-12.col-lg-12{ style: "padding: 33px; min-height: 300px; background-image: url(#{@city.header_image.url}); background-size: cover;" }
+      .col-sm-12.col-md-12.col-lg-12{ style: "padding: 33px; min-height: 300px; background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(#{@city.header_image.url}); background-size: cover;" }
         %h2.city-header= "Xplode #{@city.name}  |  #{@city.date}"
         %h3.city-subheader= "#{@city.venue}  |  #{@city.time}"
         .text-right{ style: "margin-top: 40px; margin-right: 5%;" }

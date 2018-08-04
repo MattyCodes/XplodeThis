@@ -1,7 +1,7 @@
 .container-fluid
   .row
     - if @schedule.city.header_image.present?
-      .col-sm-12.col-md-12.col-lg-12{ style: "padding: 33px; min-height: 300px; background-image: url(#{@schedule.city.header_image.url}); background-size: cover;" }
+      .col-sm-12.col-md-12.col-lg-12{ style: "padding: 33px; min-height: 300px; background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(#{@schedule.city.header_image.url}); background-size: cover;" }
         %h2.city-header= "Xplode #{@schedule.city.name}  |  #{@schedule.city.date}"
         %h3.city-subheader= "#{@schedule.city.venue}  |  #{@schedule.city.time}"
         .text-right{ style: "margin-top: 40px; margin-right: 5%;" }
@@ -32,7 +32,7 @@
                 %span.glyphicon.arrow_span.glyphicon-menu-up
               .row.panel-content
                 - panel.speakers.each do |speaker|
-                  .row
+                  .row.panel-container-flex
                     .col-sm-12.col-md-5.col-lg-5
                       = link_to speaker_path(speaker) do
                         = image_tag speaker.avatar_url, class: "panel-speaker-img"
