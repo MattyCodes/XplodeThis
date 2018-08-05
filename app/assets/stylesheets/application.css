@@ -214,8 +214,6 @@ nav {
   box-sizing: content-box;
 }
 
-/* Footer Style */
-
 footer {
   display: flex;
   justify-content: center;
@@ -228,18 +226,14 @@ footer {
   width: 100%;
 }
 
-/* Input Style */
-
 input[type=text],
 input[type=email],
 input[type=password] {
   border-radius: 5px;
   border: 0;
   min-height: 40px;
-  margin: 15px 0px;
+  margin: 15px auto;
   padding: 0px 15px;
-  min-width: 250px;
-  width: 90%;
 }
 
 textarea {
@@ -249,6 +243,7 @@ textarea {
   border: 0;
   border-radius: 5px;
   padding: 10px;
+  margin: 15px auto;
 }
 
 input[type=text]:focus,
@@ -331,4 +326,18 @@ button:active {
 
 .footer-msg {
   padding: 0px 25px;
+}
+
+.max-500 {
+  max-width: 500px;
+}
+
+.btn-primary.btn-rounded {
+  display: inline-block;
+  padding: 8px 26px;
+  border-radius: 5px;
+  background: #0275db;
+  cursor: pointer;
+  transition: all 250ms;
+  border: 2px solid #FFFFFF;
 }

@@ -5,7 +5,7 @@
   .row
     .col-sm-12.col-md-12.col-lg-12
       .row
-        = simple_form_for @logo, html: { novalidate: true } do |f|
+        = simple_form_for @logo, html: { novalidate: true }, :defaults => { :input_html => { :class => "form-control max-500" } } do |f|
           - if @error_message
             %code{ style: "margin-bottom: 35px; display: block;" }= @error_message
           .row

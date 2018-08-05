@@ -5,19 +5,19 @@
 
     .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
       = f.label :email, class: "users-label"
-      = f.email_field :email, autofocus: true, autocomplete: "email"
+      = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control max-500"
 
     .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
       = f.label :password, class: "users-label"
-      = f.password_field :password, autocomplete: "off"
+      = f.password_field :password, autocomplete: "off", class: "form-control max-500"
 
     .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
       = f.label :password_confirmation, class: "users-label"
-      = f.password_field :password_confirmation, autocomplete: "off"
+      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control max-500"
 
     .form-group.col-xs-12.col-sm-6.col-md-6.col-lg-6
       %label.users-label Validation Key
-      = text_field_tag :validation_key
+      = text_field_tag :validation_key, nil, class: "form-control max-500"
 
     %div{ style: "margin: 45px auto; width: 300px;" }
       - if resource.errors.present?

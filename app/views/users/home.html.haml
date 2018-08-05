@@ -19,11 +19,11 @@
             .form-row
               .form-group.col-sm-12.col-md-12.col-lg-12
                 %label.form-label Name
-                = text_field_tag "name", nil, :required => true
+                = text_field_tag "name", nil, :required => true, class: "form-control max-500 pull-left"
             .form-row
               .form-group.col-sm-12.col-md-12.col-lg-12
                 %label.form-label Email
-                = text_field_tag "email", nil, :required => true
+                = text_field_tag "email", nil, :required => true, class: "form-control max-500 pull-left"
             .form-row
               .form-group.col-sm-12.col-md-12.col-lg-12
                 = submit_tag "Submit", class: "xplode-btn"

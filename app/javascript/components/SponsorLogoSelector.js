@@ -6,6 +6,7 @@ class SponsorLogoSelector extends React.Component {
     super(props);
     this.state = {
       logos: this.props.logos,
+      searchText: '',
       draggingLogo: null
     };
   };
@@ -22,6 +23,13 @@ class SponsorLogoSelector extends React.Component {
         </div>
         <div className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
           <h2 className="form-header"> Available Logos </h2>
+          <input
+            type="text"
+            className="form-control"
+            onChange={ (e) => this.setState({ searchText: e.target.value }) }
+            value={ this.state.searchText }
+            placeholder="Search Logo By Name..."
+          />
           { availableLogos }
         </div>
         <div className="col-sm-12 col-md-12 col-lg-12">
@@ -124,12 +132,20 @@ class SponsorLogoSelector extends React.Component {
 
   generateList(logoType) {
     var self        = this;
-    var logos       = this.state.logos;
     var selected    = false;
     var available   = false;
     var hasValues   = false;
     var endDropZone = null;
-    var result      = logos.map(function(logo, index) {
+    var searchTerm  = this.state.searchText;
+    var logos       = [];
+
+    this.state.logos.map(function(logo) {
+      if ( logo && logo.selected || logo.name.toLowerCase().includes(searchTerm) ) {
+        logos.push(logo);
+      };
+    });
+
+    var result  = logos.map(function(logo, index) {
       selected  = ( logo && logoType == 'current' && logo.selected );
       available = ( logo && logoType == 'available' && !logo.selected );
 
